@@ -1,0 +1,85 @@
+.jumbotron {
+     padding: 5rem 4rem;
+     background-color: #b87373;
+ }
+ 
+ .search-ppdb {
+     padding: 2rem 1rem;
+     background-color: #e2defe;
+ }
+ .jumbotronppdb {
+     background-image: url(/img/gambar1.jpg);
+     height: 400px;
+ }
+ 
+ .mkppdb {
+     background: linear-gradient(to right, #248FF0, #57ABF9);
+ }
+ 
+ #Konsep {
+     padding: 5rem 4rem;
+     background-color: #e2defe;
+ }
+ 
+ #jalur {
+     padding: 5rem 4rem;
+     background-color: #d6d2e9;
+ }
+ 
+ .j-prestasi {
+     padding: 5rem 4rem;
+     background-color: #27a55c;
+ }
+ .j-perpindahan {
+     padding: 5rem 4rem;
+     background-color: #1b948e;
+ }
+ .j-afirmasi {
+     padding: 5rem 4rem;
+     background-color: #FF6347;
+ }
+ .j-zonasi {
+     padding: 5rem 4rem;
+     background-color: #9370DB;
+ }
+ 
+ .jumbotrondeskripsi {
+     background-image: url(/img/gambar1.jpg);
+     height: 400px;
+ }
+ 
+ .permendikbud {
+     background: linear-gradient(to right, #248FF0, #57ABF9);
+ }
+ 
+ .alurproses{
+     padding: 5rem 4rem;
+     background-color: #d6d2e9;
+ }
+ 
+ #footer {
+     background-color: #B59898;
+ }
+ 
+ .kontak {
+     background-color: #b87373;
+ }
+ 
+ .information {
+     background-color: #d6d2e9;
+ }
+ 
+ .information-info a {
+     color: #1F4262;
+     text-decoration: none;
+ }
+ 
+ html {scroll-behavior:smooth;}
+ #header {width:100%; height:100%; height:auto; position:sticky; position:-webkit-sticky; top:0px; padding:0px; margin:0px auto 20px; background:#1F4262;}
+ #header a {display:block; padding:7px 0px 0px; margin:auto; text-align:center;}
+ #header a img {max-height:35px;}
+ /* Back to top */
+ .ignielToTop {width:50px; height:50px; position:fixed; bottom:50px; right: 50px; z-index:99; cursor:pointer; border-radius:100px; transition:all .5s; background:#1F4262 url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z' fill='%23fff'/%3E%3C/svg%3E") no-repeat center center;}
+ .ignielToTop:hover {background:#1d2129 url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z' fill='%23fff'/%3E%3C/svg%3E") no-repeat center center;}
+ @media screen and (max-width:640px){body{width:auto;max-width:100%;margin:0px;}}
+ 

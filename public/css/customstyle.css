@@ -1,0 +1,134 @@
+/* YOUR CUSTOM CSS */
+
+/* Breadcrump-SD */
+.breadcrumbSD{
+    background-color: #dc3545;
+    color: #e5e5e5;
+}
+.SD{
+    color: white;
+}
+
+.breadcrumb-item.active.SD{
+    color: #e5e5e5;
+}
+
+/* Breadcrump-SMP */
+.breadcrumbSMP{
+    background-color: #34437d;
+    color: #e5e5e5;
+}
+.SMP{
+    color: white;
+}
+
+.breadcrumb-item.active.SMP{
+    color: #e5e5e5;
+}
+
+/* Breadcrump-SMA */
+.breadcrumbSMA{
+    background-color: #495057;
+    color: #e5e5e5;
+}
+.SMA{
+    color: white;
+}
+
+.breadcrumb-item.active.SMA{
+    color: #e5e5e5;
+}
+
+/* CSS Kalender*/
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: #a7a7a7;
+    text-align: center;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}
+
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+    cursor: pointer;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #777;
+}
+
+.days li .active {
+    padding:10px;
+    background: greenyellow;
+    color: white !important
+}
+
+.warna-tgl {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: block;
+    margin: 0 auto;
+}
+
+.hijau {
+    background-color: greenyellow;
+}
+
+.tbl-jadwal {
+    text-align: center;
+}
