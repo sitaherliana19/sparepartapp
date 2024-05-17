@@ -51,7 +51,7 @@
                     </li>
                     <li>
                         <a class="btn btn-success"
-                            style="margin: 4px 10px 0px 0px; padding: 4px 16px; border-radius: 4px;" href="/login"
+                            style="margin: 4px 10px 0px 0px; padding: 4px 16px; border-radius: 4px;" href="/log"
                             role="button">Login</a>
                     </li>
                     <li>

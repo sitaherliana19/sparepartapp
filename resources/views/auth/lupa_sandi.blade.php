@@ -19,7 +19,7 @@
                 <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                     <div class="mb-4 text-sm text-gray-600">Lupa Kata Sandi? Masukkan alamat email Anda untuk menyetel ulang kata sandi</div>
                     <!-- Session Status -->
-                    <form method="POST" action="http://sparepartapp.test/lupa_sandi">
+                    <form method="POST" action="/lupa_sandi">
                         <input type="hidden" name="_token" autocomplete="off">
                         <!-- Email Address -->
                         <div>
