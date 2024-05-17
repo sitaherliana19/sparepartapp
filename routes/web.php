@@ -35,9 +35,7 @@ Route::get('/lupa_sandi', function () {
 });
 
 Route::get('/halaman-utama', function () {
-    return view('halamanutama', [
-        "title" => "halamanutama"
-    ]);
+    return view('halamanutama');
 });
 
 Route::get('/kontak', function () {

@@ -10,7 +10,7 @@
     </section>
     {{-- Akhir Jumbotron --}}
 
-    {{-- Search PPDB Online --}}
+    
     <section id="search">
         <div class="search-ppdb">
             <img src="" alt="">
