@@ -31,7 +31,7 @@
                     <p class="mb-2 text-l">Isi formulir berikut untuk melanjutkan</p>
                     
                     <!-- Session Status -->
-                    <form action="{{ route('register_post') }}" method="post">
+                    <form action="/registerpost" method="post">
                          @csrf
                          
                          <!-- Name -->
@@ -66,7 +66,7 @@
                          <!-- Nomor Handphone -->
                          <div class="mt-4">
                               <label class="block font-medium text-sm text-gray-700" for="nomor-handphone">Nomor Handphone</label>
-                              <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nomor-handphone" type="tel" name="nomor-handphone" required="required">
+                              <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nomor-handphone" type="tel" name="nomor_handphone" required="required">
                          </div>
                          <button type="submit" class="items-center px-4 py-2 mt-4 w-full bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Register</button>
                          <div class="flex items-center justify-end mt-2">

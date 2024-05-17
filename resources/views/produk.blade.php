@@ -10,17 +10,22 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($pr as $product)
                 <div class="col-md-4 mb-3 mt-3">
-                    <div class="card shadow-sm" style="width: 23rem;">
-                        <img src="/img/spring.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Automatic Clutch Spring Set</h5>
-                            <p class="card-text">Per Kopling merupakan salah satu komponen yang penting pada sepeda motor. Per kopling mempunyai fungsi untuk menekan kampas kopling agar dapat menempel pada pelat gesek. 
-                              Selain itu, Per kopling juga berfungsi untuk mengembalikan kampas kopling ke posisi semula. Per Kopling TDR merupakan jawaban untuk performa kopling yang optimal.
-                              Per kopling TDR dibuat dari special material yang didesain khusus untuk meningkatkan performa, dan ketahanan. Per Kopling TDR juga telah digunakan dan direkomendasikan oleh tim balap internasional.</p>
+                    <a href="#" class="card shadow-sm" style="width: 23rem;">
+                        <div >
+                            <img src="/img/spring.jpg" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">{{ $product->title}}</h5>
+                                <p class="card-text">{{   $product->description}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                    
                 </div>
+
+                @endforeach
+                
                 <div class="col-md-4 mb-3 mt-3">
                     <div class="card shadow-sm" style="width: 23rem;">
                         <img src="/img/balancer.png" class="card-img-top">

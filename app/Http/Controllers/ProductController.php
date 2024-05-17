@@ -15,15 +15,17 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $katakunci = $request->katakunci;
+        $pr = Product::get();
         $jumlahbaris =5;
         if(strlen($katakunci)){
-            $data = product::where('product_code', 'like', "%katakunci%")
-                ->orWhere('title', 'like', "%katakunci%")
+            $data = product::where('product_code', 'like','%'.$katakunci.'%')
+                ->orWhere('title', 'like', '%'.$katakunci.'%')
                 ->paginate($jumlahbaris);        
         }else{
             $data = product::orderBy('id', 'desc')->paginate($jumlahbaris);
         }
-        return view ('products.index')->with('data', $data);
+        return view ('products.index', compact(['data', 'pr']));
+
     }
 
     /**

@@ -3,6 +3,7 @@
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $title = "home";
+    return view('halamanutama', compact(['title']));
 });
 
 Route::get('/halaman-utama', function () {
@@ -25,6 +27,10 @@ Route::get('/halaman-utama', function () {
 
 Route::get('/dashboard-admin', function () {
     return view('Admin.dashboard-admin');
+});
+
+Route::get('/admin-dashboard', function () {
+    return view('Admin.admin-dashboard');
 });
 
 Route::resource('products', ProductController::class);
@@ -41,9 +47,9 @@ Route::get('/kontak', function () {
 });
 
 Route::get('/produk', function () {
-    return view('produk', [
-        "title" => "produk"
-    ]);
+    $pr = Product::get();
+    $title = "product";
+    return view('produk',compact(['pr','title']) );
 });
 
 Route::get('/pemesanan', function () {
@@ -53,12 +59,16 @@ Route::get('/cara-beli', function () {
     return view('Beli.indexbeli');
 });
 
+Route::get('/log', function(){
+    return view('auth.login');
+})->name('login');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+// Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login_post', [LoginController::class, 'login_post'])->name('login_post');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [LoginController::class, 'register']);
-Route::post('/register_post', [LoginController::class, 'register_post'])->name('register_post');
+Route::post('/registerpost', [LoginController::class, 'register_post'])->name('register_post');
 
 
 Route::post('/login-prosesuser', [LoginController::class, 'login_prosesuser'])->name('login-prosesuser');

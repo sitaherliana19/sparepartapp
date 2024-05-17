@@ -49,12 +49,12 @@ class loginController extends Controller
      public function register_post (Request $request){
           Session::flash('nama', $request->nama);
           Session::flash('email', $request->email);
-          $request->validate([
+          $data1 = $request->validate([
               'name'     => 'required',
-              'email'     => 'required|email',
-              'password'  => 'required|min:6',
+              'email'     => 'required',
+              'password'  => 'required',
               'alamat'  => 'required',
-              'nomor handphone'  => 'required',
+              'nomor_handphone'  => 'required',
             ],[
                'name.required' => 'Nama wajib diisi',
                'email.required' => 'Email wajib diisi',
@@ -63,12 +63,14 @@ class loginController extends Controller
                'password.min' => 'Minimun password yang digunakan 6 karakter',
             ]);
 
+            
+
                $data =[
                    'name'=> $request->name,
                    'email' => $request->email,
-                   'password' => Hash::make($request->password),
+                   'password' =>$request->password,
                    'alamat'  => $request->alamat,
-                   'nomor'=>$request->nomor,
+                   'nomor_handphone'=> $request->nomor_handphone,
                ];
 
                User::create($data);
