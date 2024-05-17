@@ -27,12 +27,7 @@
             </div>
         </div>
     </section>
-    {{-- Akhir Search PPDB Online --}}
-
-
-
-
-
+    
     {{-- Footer --}}
     <footer class="sticky-footer p-3" id="footer">
         <div class="container">

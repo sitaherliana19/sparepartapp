@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="vtZ3fGmei0XA4AATCmHEmz8dFyAspLacvmDjClpG">
-        <title>Laravel</title>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Lupa Sandi</title>
         <!-- Fonts -->
         <link href="login/font-bunny.css" rel="stylesheet"/>
         <!-- Scripts -->

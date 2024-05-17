@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/halaman-utama', function () {
+    return view('halamanutama');
+});
 
 Route::get('/dashboard-admin', function () {
     return view('Admin.dashboard-admin');
@@ -26,17 +29,10 @@ Route::get('/dashboard-admin', function () {
 
 Route::resource('products', ProductController::class);
 
-Route::get('/admin-dashboard', function () {
-    return view('.Admin.admin-dashboard');
-});
-
 Route::get('/lupa_sandi', function () {
     return view('auth.lupa_sandi');
 });
 
-Route::get('/halaman-utama', function () {
-    return view('halamanutama');
-});
 
 Route::get('/kontak', function () {
     return view('contact', [
