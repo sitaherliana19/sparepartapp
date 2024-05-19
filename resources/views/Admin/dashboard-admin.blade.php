@@ -41,7 +41,7 @@
           <div class="modal-body">Pilih "Logout" untuk mengakhiri sesi Anda saat ini</div>
           <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a href="http://sparepartapp.test/logout" class="btn btn-danger" href="#0">Logout</a>
+              <a href="{{ route('logout') }}" class="btn btn-danger" href="#0">Logout</a>
           </div>
       </div>
   </div>
