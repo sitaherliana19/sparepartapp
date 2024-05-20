@@ -45,7 +45,7 @@
                  color: black; /* Mengubah warna teks menjadi hitam */
              }
          </style>
-         <a class="navbar-brand" href=""><img src="/img/logo-navbar.png" alt="" width="60" height="36">Bengkel Arilla</a>
+         <a class="navbar-brand"><img src="/img/logo-navbar.png" alt="" width="60" height="36">Bengkel Arilla</a>
          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
              aria-label="Toggle navigation">
@@ -59,10 +59,10 @@
                          <span class="nav-link-text">Beranda</span>
                      </a>
                  </li>
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pemesanan">
-                     <a class="nav-link" href="pemesanan">
+                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="DataPelanggan">
+                     <a class="nav-link" href="Data Pelanggan">
                          <i class="fa-solid fa-fw fa-clipboard-list"></i> 
-                         <span class="nav-link-text">Pemesanan Barang</span>
+                         <span class="nav-link-text">Data Pelanggan</span>
                      </a>
                  </li>
                  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="product">
@@ -71,36 +71,21 @@
                          <span class="nav-link-text">Product</span>
                      </a>
                  </li>
-
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Order">
-                     <a class="nav-link" href="#listschool">
-                         <i class="fa-solid fa-fw fa-cart-arrow-down"></i> 
-                         <span class="nav-link-text">Order</span>
-                     </a>
-                 </li>
-                 
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cara">
-                     <a class="nav-link" href="cara-beli">
-                         <i class="fa fa-fw fa-shopping-bag"></i> 
-                         <span class="nav-link-text">Cara Beli</span>
-                     </a>
-                 </li>
                  
                  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Laporan">
-                     <a class="nav-link" href="#listschool">
+                     <a class="nav-link" href="/inventory_reports">
                          <i class="fa fa-fw fa-chart-bar"></i> 
                          <span class="nav-link-text">Laporan</span>
                      </a>
                  </li>
+                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
+                    <a class="nav-link" href="/log" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fa fa-fw fa-sign-out-alt"></i> 
+                        <span class="nav-link-text">Logout</span>
+                    </a>
+                </li>
              </ul>
-             <ul class="navbar-nav ml-auto"> 
-                 <li class="nav-item">
-                     <a class="nav-link" href="/login" data-toggle="modal" data-target="#exampleModal"> 
-                         <i class="fa fa-sign-out"></i> 
-                         <span class="nav-link-text">Logout</span>
-                     </a>
-                 </li>
-             </ul>
+             
          </div>
      </nav>
      <div class="contain">

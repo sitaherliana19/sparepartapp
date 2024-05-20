@@ -66,11 +66,11 @@
                     </div>
                     <button type="submit" class="items-center px-4 py-2 mt-4 w-full bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Log in</button>
                     <div class="flex items-center justify-end mt-4">
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="http://127.0.0.1:8000/lupa_sandi">Lupa Kata Sandi?</a>
-                    </div>
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">Lupa Kata Sandi?</a>
+                    </div>                    
                     <div class="flex items-center justify-end mt-4">
                         <a class="class=mb-0 text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500  text-sm">
-                            <b>Belum Punya Akun?</b><a href="http://127.0.0.1:8000/register" class="underline text-sm text-gray-600">Daftar Akun</a>
+                            <b>Belum Punya Akun?</b><a href="{{ route('register') }}" class="underline text-sm text-gray-600">Daftar Akun</a>
                         </a>
                     </div>
                 </form>

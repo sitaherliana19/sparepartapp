@@ -14,7 +14,9 @@ class Product extends Model
         'title',
         'price',
         'product_code',
+        'stock',
         'description'
+        
     ];
     protected $table = 'products';
     public $timestamps = false;

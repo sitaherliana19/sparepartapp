@@ -7,11 +7,10 @@
    
      <!-- CSS -->
    <link rel="stylesheet" href="/font2/css/all.min.css">
-   <link rel="stylesheet" href="/admin_style/products.css">
 
    <!-- FONT -->
    <link href="/login/font-bunny.css" rel="stylesheet">
-   
+   <link href="/login/admin.css" rel="stylesheet">
     <!-- Logout Modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

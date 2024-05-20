@@ -1205,4 +1205,16 @@ html {
        font-size: 18px;
        text-align: justify;
    }
+   .bg-body {
+    --bs-bg-opacity: 1;
+    background-color: #eef0f1 !important;
+}
+
+.nav-link.logout-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+
    

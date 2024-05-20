@@ -19,38 +19,45 @@
                   <a href='{{ url('products/create') }}' class="btn btn-primary">+ Tambah Data</a>
                 </div>
           
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th class="col-md-1">Id</th>
-                            <th class="col-md-2">Nama</th>
-                            <th class="col-md-2">Harga</th>
-                            <th class="col-md-2">Product_kode</th>
-                            <th class="col-md-3">Deskripsi</th>
-                            <th class="col-md-2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = $data->firstItem()?>
-                        @foreach ($data as $item)
-                        <tr>
-                            <td>{{ $i }}</td>
-                            <td>{{ $item ->title }}</td>
-                            <td>{{ $item ->price }}</td>
-                            <td>{{ $item ->product_code }}</td>
-                            <td>{{ $item->description }}</td>
-                            <td>
-                                <a href='{{ url('products/'.$item->product_code.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
-                                <form onsubmit="return confirm('Apakah Anda yakin akan menghapus data')" class='d-inline' action="{{ url('products/'.$item->product_code) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php $i++?>
-                        @endforeach
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">Id</th>
+                                    <th class="col-md-2">Nama</th>
+                                    <th class="col-md-2">Harga</th>
+                                    <th class="col-md-1">Product_kode</th>
+                                    <th class="col-md-2">Stock</th>
+                                    <th class="col-md-3">Deskripsi</th>
+                                    <th class="col-md-2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = $data->firstItem()?>
+                                @foreach ($data as $item)
+                                <tr>
+                                    <td>{{ $i }}</td>
+                                    <td>{{ $item ->title }}</td>
+                                    <td>{{ $item ->price }}</td>
+                                    <td>{{ $item ->product_code }}</td>
+                                    <td>{{ $item ->stock}}</td>
+                                    <td>{{ $item->description }}</td>
+                                    <td>
+                                        <a href='{{ url('products/'.$item->product_code.'/edit') }}' class="btn btn-warning btn-sm mb-2" style="min-width: 57px;">Edit</a>
+                                        <form onsubmit="return confirm('Apakah Anda yakin akan menghapus data')" class='d-inline' action="{{ url('products/'.$item->product_code) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" name="submit" class="btn btn-danger btn-sm" style="min-width: 55px;">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php $i++?>
+                                @endforeach
+                        </table>
+                    </table>
+                </div>
+                
                 <!-- ANGKA NEXT -->
                {{ $data->withQueryString()->links()}}
         </div>

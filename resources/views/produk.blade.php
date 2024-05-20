@@ -11,13 +11,14 @@
             </div>
             <div class="row">
                 @foreach($pr as $product)
-                <div class="col-md-4 mb-3 mt-3">
-                    <a href="#" class="card shadow-sm" style="width: 23rem;">
+                <div class="col-md-3 mb-3 mt-3">
+                    <a href="{{ route('produk_show', ['id' => $product->id]) }}" class="card shadow-sm" style="width: 16rem; text-decoration: none;">
                         <div >
-                            <img src="/img/spring.jpg" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">{{ $product->title}}</h5>
-                                <p class="card-text">{{   $product->description}}</p>
+                            <img src="/img/balancer.png" class="card-img-top">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ $product->title}}</h5>
+                                <hr> <!-- Garis pemisah -->
+                                <p class="card-text">{{   $product->price}}</p>
                             </div>
                         </div>
                     </a>
@@ -25,16 +26,7 @@
 
                 @endforeach
                 
-                <div class="col-md-4 mb-3 mt-3">
-                    <div class="card shadow-sm" style="width: 23rem;">
-                        <img src="/img/balancer.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Balancer Crankshaft</h5>
-                            <p class="card-text">Balancer Crankshaft TDR merupakan balancer yang dibuat dengan bahan berkualitas tinggi dan didesain dengan presisi sehingga 
-                              dapat membantu meningkatkan ketahanan gigi dan peningkatan performa maksimal motor Anda.</p>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-md-4 mb-3 mt-3">
                     <div class="card shadow-sm" style="width: 23rem;">
                         <img src="/img/karet-vacum.jpg" class="card-img-top">

@@ -14,7 +14,7 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/login/style.css">
-    <title>{{ $title }}</title>
+    
 </head>
 
 <body>
@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'Beranda' ? 'active' : '' }}" href="/halaman-utama">Beranda</a>
+                        <a class="nav-link {{ $title === 'Beranda' ? 'active' : '' }}" href="/halamanutama">Beranda</a>
                     </li>
                     <ul class="navbar-nav ms-auto">
                          <li class="nav-item">
@@ -49,16 +49,33 @@
                   
                         <a class="nav-link {{ $title === 'Kontak' ? 'active' : '' }}" href="/kontak">Hubungi Kami</a>
                     </li>
-                    <li>
-                        <a class="btn btn-success"
-                            style="margin: 4px 10px 0px 0px; padding: 4px 16px; border-radius: 4px;" href="/log"
-                            role="button">Login</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-success"
-                            style="margin: 4px 10px 0px 0px; padding: 4px 16px; border-radius: 4px;" href="/register"
-                            role="button">Register</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ $title === 'User' ? 'active' : '' }}"
+                            data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">User</a>
+                        <ul class="dropdown-menu">
+                            @guest
+                                <li><a class="dropdown-item" href="/log">Login</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/register">Register</a></li>
+                            @endguest
+                            @auth
+                                <li>
+                                    <a class="dropdown-item" href="/logout"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            @endauth
+                        </ul>
+                    </li>                    
+                    <style>
+                        .dropdown-menu.show {
+                            --bs-dropdown-link-active-bg: #dc3545;
+                        }
+                    </style>
                 </ul>
             </div>
         </div>

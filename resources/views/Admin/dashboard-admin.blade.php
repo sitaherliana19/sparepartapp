@@ -7,7 +7,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
+                    <a href="dashboard">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">My Dashboard</li>
             </ol>
@@ -41,7 +41,7 @@
           <div class="modal-body">Pilih "Logout" untuk mengakhiri sesi Anda saat ini</div>
           <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a href="http://sparepartapp.test/logout" class="btn btn-danger" href="#0">Logout</a>
+              <a href="/login" class="btn btn-danger" href="#0">Logout</a>
           </div>
       </div>
   </div>

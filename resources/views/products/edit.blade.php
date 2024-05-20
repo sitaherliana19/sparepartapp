@@ -44,6 +44,12 @@
              </div>
          </div>
          <div class="mb-3 row">
+            <label for="stock" class="col-sm-2 col-form-label">Stok</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name='stock' value= "{{ $data->stock}}" id="stock">
+            </div>
+        </div>
+         <div class="mb-3 row">
              <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
              <div class="col-sm-10">
                  <input type="text" class="form-control" name='description' value= "{{ $data->description}}" id="description">

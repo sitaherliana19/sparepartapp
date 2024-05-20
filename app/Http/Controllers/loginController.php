@@ -17,25 +17,27 @@ class loginController extends Controller
      // Login 
 
      public function login_post(Request $request){
-          Session::flash('email', $request->email);
-          $request->validate([
+        Session::flash('email', $request->email);
+        $request->validate([
             'email'     => 'required',
             'password'  => 'required',
-          ]);
-
-          $loginproses= [
-               'email'     => $request->email,
-               'password'  => $request->password
-          ];
-
-          if(Auth::attempt($loginproses)){
-               return redirect('dashboard-admin');
-          }else{
-               return redirect()->route('login')->withErrors( 'Email atau Password Anda Salah');
-               }
-
-     }
-
+        ]);
+    
+        $loginproses= [
+            'email'     => $request->email,
+            'password'  => $request->password
+        ];
+    
+        if(Auth::attempt($loginproses)){
+            if(Auth::user()->role == 'admin') {
+                return redirect('admin-dashboard');
+            } else {
+                return redirect('halamanutama');
+            }
+        } else {
+            return redirect()->route('login')->withErrors('Email atau Password Anda Salah');
+        }
+    }
      public function logout(){
           Auth::logout();
           return redirect()->route('login')->with('success','Anda berhasil logout');
@@ -63,28 +65,25 @@ class loginController extends Controller
                'password.min' => 'Minimun password yang digunakan 6 karakter',
             ]);
 
-            
+               $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'alamat' => $request->alamat,
+                'nomor_handphone' => $request->nomor_handphone,
+            ]);
 
-               $data =[
-                   'name'=> $request->name,
-                   'email' => $request->email,
-                   'password' =>$request->password,
-                   'alamat'  => $request->alamat,
-                   'nomor_handphone'=> $request->nomor_handphone,
-               ];
-
-               User::create($data);
-               
-               $loginproses= [
-                    'email'     => $request->email,
-                    'password'  => $request->password
-               ];
-
-               if (Auth::attempt($loginproses)) {
-                    return redirect()->route('login');
-               }else {
-                    return redirect('register')->withErrors('username dan Password yang dimasukkan tidak valid');
-               }
+            if (Auth::login($user)) {
+                // Redirect ke halaman yang sesuai setelah login
+                if ($user->role == 'admin') {
+                    return redirect('admin-dashboard');
+                } else {
+                    return redirect('halamanutama');
+                }
+            } else {
+                // Gagal autentikasi
+                return redirect()->route('login')->withErrors('Gagal login.');
+            }
        }
   
     

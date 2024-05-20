@@ -44,15 +44,15 @@ class ProductController extends Controller
         Session::flash('id',$request->id);
         Session::flash('title',$request->title);
         Session::flash('price',$request->price);
+        Session::flash('stock',$request->stock);
         Session::flash('product_code',$request->product_code);
         Session::flash('description',$request->description);
 
-
-       
         $data =[
             'id' =>$request->id,
             'title'=>$request->title,
             'price'=>$request->price,
+            'stock'=>$request->stock,
             'product_code'=>$request->product_code,
             'description'=>$request->description,
         ];
@@ -66,7 +66,10 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $title = 'Detail Produk: ' . $product->Produk;
+        return view('products.produk_show', compact('product', 'title'));
+        
     }
 
     /**
@@ -87,6 +90,7 @@ class ProductController extends Controller
             'id' =>$request->id,
             'title'=>$request->title,
             'price'=>$request->price,
+            'stock'=>$request->stock,
             'description'=>$request->description,
         ];
         Product::where('product_code', $id)->update($data);

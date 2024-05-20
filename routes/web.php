@@ -4,6 +4,10 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\InventoryReportController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +24,11 @@ Route::get('/', function () {
     $title = "home";
     return view('halamanutama', compact(['title']));
 });
-
-Route::get('/halaman-utama', function () {
-    return view('halamanutama');
+Route::get('/halamanutama', function () {
+    $title = "home";
+    return view('halamanutama', compact(['title']));
 });
+
 
 Route::get('/dashboard-admin', function () {
     return view('Admin.dashboard-admin');
@@ -34,6 +39,8 @@ Route::get('/admin-dashboard', function () {
 });
 
 Route::resource('products', ProductController::class);
+
+Route::resource('inventory_reports', InventoryReportController::class);
 
 Route::get('/lupa_sandi', function () {
     return view('auth.lupa_sandi');
@@ -52,6 +59,9 @@ Route::get('/produk', function () {
     return view('produk',compact(['pr','title']) );
 });
 
+Route::get('/produk/{id}', [ProductController::class, 'show'])->name('produk_show');
+
+
 Route::get('/pemesanan', function () {
     return view('pemesanan.index');
 });
@@ -63,12 +73,17 @@ Route::get('/log', function(){
     return view('auth.login');
 })->name('login');
 
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/log');
+})->name('logout');
 
 // Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login_post', [LoginController::class, 'login_post'])->name('login_post');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/register', [LoginController::class, 'register']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->name('logout');
+Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/registerpost', [LoginController::class, 'register_post'])->name('register_post');
+
 
 
 Route::post('/login-prosesuser', [LoginController::class, 'login_prosesuser'])->name('login-prosesuser');
@@ -76,4 +91,11 @@ Route::get('/logoutuser', [LoginController::class, 'logoutuser'])->name('logoutu
 Route::get('/registeruser', [LoginController::class, 'registeruser'])->name('registeruser');
 Route::post('/register-prosesuser', [LoginController::class, 'register_prosesuser'])->name('register-prosesuser');
 
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
