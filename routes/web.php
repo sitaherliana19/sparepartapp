@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\Product;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
-use App\Models\Product;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\InventoryReportController;
