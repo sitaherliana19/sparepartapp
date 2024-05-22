@@ -50,6 +50,9 @@ class ProductController extends Controller
         Session::flash('description',$request->description);
         Session::flash('image',$request->image);
 
+        $fileName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('./public/', $fileName);
+
         $data =[
             'id' =>$request->id,
             'title'=>$request->title,
@@ -114,14 +117,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data =[
+        $data = [
             'title'=>$request->title,
             'category_id'=>$request->category_id,
             'price'=>$request->price,
             'stock'=>$request->stock,
             'description'=>$request->description,
-            'image'=>$request->image,
+            // 'image'=>$fileName,
         ];
+
+        if ($request->hasFile('image')) {
+            $fileName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('./public/', $fileName);
+
+            $data['image'] = $fileName;
+        }
+
         Product::where('product_code', $id)->update($data);
         
         return redirect()->to('products')->with('success', 'Berhasil melakukan update data');
