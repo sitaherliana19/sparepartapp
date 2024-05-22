@@ -20,17 +20,17 @@
 <div class="my-3 p-3 bg-body rounded shadow-sm offset-md-3">
      <div class="my-3 p-3 bg-body rounded shadow-sm">
          <div class="mb-3 row">
-             <label for="Id" class="col-sm-2 col-form-label">Id</label>
-             <div class="col-sm-10">
-                <input type="number" class="form-control" name="id" value= "{{ $data->id}}" id="id">
-             </div>
-         </div>
-         <div class="mb-3 row">
              <label for="nama" class="col-sm-2 col-form-label">Nama Barang</label>
              <div class="col-sm-10">
                  <input type="text" class="form-control" name='title' value= "{{ $data->title}}" id="title">
              </div>
          </div>
+         <div class="mb-3 row">
+            <label for="kategori" class="col-sm-2 col-form-label">Kategori Produk</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name='category_id' value= "{{ $data->category_id}}" id="category_id">
+            </div>
+        </div>
          <div class="mb-3 row">
              <label for="harga" class="col-sm-2 col-form-label">Harga Barang</label>
              <div class="col-sm-10">
@@ -53,6 +53,12 @@
              <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
              <div class="col-sm-10">
                  <input type="text" class="form-control" name='description' value= "{{ $data->description}}" id="description">
+             </div>
+         </div>
+         <div class="mb-3 row">
+             <label for="gambar" class="col-sm-2 col-form-label">Gambar Produk</label>
+             <div class="col-sm-10">
+                 <input type="file" class="form-control" name='image' id="image">
              </div>
          </div>
          <div class="mb-3 row">

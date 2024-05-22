@@ -96,5 +96,12 @@
 
  }
 
+ .card-img-top {
+    width: 100%; /* Atur lebar gambar agar 100% lebar kotak */
+    height: 200px; /* Atur tinggi gambar */
+    object-fit: contain; /* Pastikan gambar terisi penuh di dalam kotak */
+    border-radius: 10px; /* Atur sudut lengkung untuk membuat tampilan yang lebih halus */
+}
+
 
  

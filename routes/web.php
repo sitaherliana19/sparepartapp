@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\BarangKeluarController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\InventoryReportController;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,15 +32,17 @@ Route::get('/halamanutama', function () {
 });
 
 
-Route::get('/dashboard-admin', function () {
-    return view('Admin.dashboard-admin');
-});
+// Route::get('/dashboard-admin', function () {
+//     return view('Admin.dashboard-admin');
+// });
 
 Route::get('/admin-dashboard', function () {
     return view('Admin.admin-dashboard');
 });
 
 Route::resource('products', ProductController::class);
+Route::get('/produk/{id}', [ProductController::class, 'show'])->name('produk_show');
+Route::post('/products/{id}/purchase', [ProductController::class, 'purchase'])->name('purchase');
 
 Route::resource('inventory_reports', InventoryReportController::class);
 
@@ -58,8 +62,6 @@ Route::get('/produk', function () {
     $title = "product";
     return view('produk',compact(['pr','title']) );
 });
-
-Route::get('/produk/{id}', [ProductController::class, 'show'])->name('produk_show');
 
 
 Route::get('/pemesanan', function () {
@@ -96,6 +98,14 @@ Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEm
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
+
+Route::get('/barang_masuk', [BarangMasukController::class, 'index'])->name('barang_masuk.index');
+Route::get('/barang_masuk/create', [BarangMasukController::class, 'create'])->name('barang_masuk.create');
+Route::post('/barang_masuk', [BarangMasukController::class, 'store'])->name('barang_masuk');
+
+Route::get('/barang_keluar', [BarangKeluarController::class, 'index'])->name('barang_keluar.index');
+Route::get('/barang_keluar/create', [BarangKeluarController::class, 'create'])->name('barang_keluar.create');
+Route::post('/barang_keluar', [BarangKeluarController::class, 'store'])->name('barang_keluar');
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

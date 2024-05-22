@@ -43,22 +43,26 @@ class ProductController extends Controller
     {
         Session::flash('id',$request->id);
         Session::flash('title',$request->title);
+        Session::flash('category_id',$request->category_id);
         Session::flash('price',$request->price);
         Session::flash('stock',$request->stock);
         Session::flash('product_code',$request->product_code);
         Session::flash('description',$request->description);
+        Session::flash('image',$request->image);
 
         $data =[
             'id' =>$request->id,
             'title'=>$request->title,
+            'category_id'=>$request->category_id,
             'price'=>$request->price,
             'stock'=>$request->stock,
             'product_code'=>$request->product_code,
             'description'=>$request->description,
+            'image'=>$request->image,
         ];
         Product::create($data);
 
-        return redirect()->to('products')->with('sucess', 'Berhasil menambahkan data');
+        return redirect()->to('products')->with('success', 'Berhasil menambahkan data');
     }
 
     /**
@@ -71,6 +75,30 @@ class ProductController extends Controller
         return view('products.produk_show', compact('product', 'title'));
         
     }
+
+    // Fungsi untuk menangani pembelian produk
+    // public function purchase(Request $request, $id)
+    // {
+    //     $product = Product::findOrFail($id);
+    //     $quantity = $request->input('quantity');
+
+    //     // Validasi jumlah
+    //     $request->validate([
+    //         'quantity' => 'required|integer|min:1|max:' . $product->stock,
+    //     ]);
+
+    //     // Proses pembelian (contoh sederhana, perlu disesuaikan dengan kebutuhan)
+    //     if ($product->stock >= $quantity) {
+    //         $product->stock -= $quantity;
+    //         $product->save();
+
+    //         return redirect()->route('produk_show', ['id' => $id])
+    //             ->with('success', 'Produk berhasil dibeli!');
+    //     } else {
+    //         return redirect()->route('produk_show', ['id' => $id])
+    //             ->with('error', 'Jumlah stok tidak mencukupi!');
+    //     }
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -87,15 +115,16 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $data =[
-            'id' =>$request->id,
             'title'=>$request->title,
+            'category_id'=>$request->category_id,
             'price'=>$request->price,
             'stock'=>$request->stock,
             'description'=>$request->description,
+            'image'=>$request->image,
         ];
         Product::where('product_code', $id)->update($data);
         
-        return redirect()->to('products')->with('sucess', 'Berhasil melakukan update data');
+        return redirect()->to('products')->with('success', 'Berhasil melakukan update data');
     }
 
     /**

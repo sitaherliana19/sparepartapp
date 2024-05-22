@@ -46,31 +46,35 @@
                              <a class="nav-link {{ $title === 'produk' ? 'active' : '' }}" href="/produk">Produk</a>
                          </li>
                     </li>
-                  
                         <a class="nav-link {{ $title === 'Kontak' ? 'active' : '' }}" href="/kontak">Hubungi Kami</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ $title === 'User' ? 'active' : '' }}"
-                            data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">User</a>
-                        <ul class="dropdown-menu">
-                            @guest
-                                <li><a class="dropdown-item" href="/log">Login</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="/register">Register</a></li>
-                            @endguest
-                            @auth
-                                <li>
-                                    <a class="dropdown-item" href="/logout"
-                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                </li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            @endauth
-                        </ul>
-                    </li>                    
+                    <li class="nav-item">
+                        @guest
+                            <!-- Menampilkan tombol login dan register jika pengguna belum login -->
+                            <button class="btn btn-outline-light mr-2" style="background-color: #804343; color: white;" onclick="window.location.href='/log'">Login</button>
+                            <button class="btn btn-light" style="background-color: #804343; color: white;" onclick="window.location.href='/register'">Register</button>
+                            <style>
+                                .btn:hover {
+                                    transform: scale(1.05); /* Memperbesar tombol saat dihover */
+                                }
+                            </style>
+                        @endguest
+                        @auth
+                            <!-- Menampilkan dropdown jika pengguna sudah login -->
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle {{ $title === 'User' ? 'active' : '' }}" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">User</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </div>
+                        @endauth
+                    </li>
+                    
                     <style>
                         .dropdown-menu.show {
                             --bs-dropdown-link-active-bg: #dc3545;

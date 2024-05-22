@@ -19,6 +19,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="/admin_style/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
     <!-- Main styles -->
     <link href="/login/admin.css" rel="stylesheet">
     <!-- Icon fonts-->
@@ -72,14 +74,26 @@
                      </a>
                  </li>
                  
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Laporan">
-                     <a class="nav-link" href="/inventory_reports">
-                         <i class="fa fa-fw fa-chart-bar"></i> 
-                         <span class="nav-link-text">Laporan</span>
+                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="barang_masuk">
+                     <a class="nav-link" href="/barang_masuk">
+                         <i class="bi bi-arrow-left"></i> 
+                         <span class="nav-link-text">Barang Masuk</span>
                      </a>
                  </li>
+                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="barang_keluar">
+                    <a class="nav-link" href="/barang_keluar">
+                        <i class="bi bi-arrow-right"></i> 
+                        <span class="nav-link-text">Barang Keluar</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="laporan">
+                    <a class="nav-link" href="/laporan">
+                        <i class="bi bi-bar-chart"></i> 
+                        <span class="nav-link-text">Laporan</span>
+                    </a>
+                </li>
                  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
-                    <a class="nav-link" href="/log" data-toggle="modal" data-target="#logoutModal">
+                    <a class="nav-link" href="log" data-toggle="modal" data-target="#logoutModal">
                         <i class="fa fa-fw fa-sign-out-alt"></i> 
                         <span class="nav-link-text">Logout</span>
                     </a>
@@ -91,6 +105,23 @@
      <div class="contain">
           @yield('contain')
 </div>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Apakah Anda Yakin?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Pilih "Logout" untuk mengakhiri sesi Anda saat ini</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
-
 </html>
