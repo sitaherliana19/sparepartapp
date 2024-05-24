@@ -1,18 +1,18 @@
 @extends('.Admin.admin')
 @section('contain')
 
-    <!-- /Navigation-->
-    <div class="content-wrapper">
-        <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="dashboard">Dashboard</a>
-                </li>
-                <li class="breadcrumb-item active">My Dashboard</li>
-            </ol>
-            <div>
-                <a href="hallo"></a>
+<!-- /Navigation-->
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="dashboard">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">My Dashboard</li>
+        </ol>
+        <div>
+            <a href="hallo"></a>
             </div>
     <!-- /.container-wrapper-->
      <!-- Footer -->

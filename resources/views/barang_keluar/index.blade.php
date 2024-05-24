@@ -29,8 +29,8 @@
                                 <th class="col-md-2">Tanggal Keluar</th>
                                 <th class="col-md-2">Kode Barang</th>
                                 <th class="col-md-2">Nama Barang</th>
-                                <th class="col-md-1">Stock Keluar</th>
-                                <th class="col-md-2">Jumlah Stock</th>
+                                <th class="col-md-2">Stock Keluar</th>
+                                <th class="col-md-2">Jumlah Stock Keluar</th>
                                 <th class="col-md-2">Harga Satuan</th>
                             </tr>
                         </thead>

@@ -8,9 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
     <title>Admin dashboard</title>
-
-   <!-- Favicons-->
-   <link rel="stylesheet" href="/font2/css/all.min.css">
+    
+    <!-- Favicons-->
+    <link rel="stylesheet" href="/font2/css/all.min.css">
 
     <!-- FONT -->
     <link href="/login/font-bunny.css" rel="stylesheet">
@@ -21,13 +21,10 @@
     <link href="/admin_style/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Main styles -->
+    
     <link href="/login/admin.css" rel="stylesheet">
-    <!-- Icon fonts-->
     <link href="/admin_style/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Plugin styles -->
     <link href="/admin_style/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Your custom styles -->
     <link href="/admin_style/css/custom.css" rel="stylesheet">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -36,51 +33,56 @@
 </head>
 
 <body class="fixed-nav sticky-footer" id="page-top">
-     <!-- Navigation-->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-         <style>
-             .navbar-brand img {
-                 margin-right: 10px; 
-                 
-             }
-             .navbar-nav.ml-auto .nav-link {
-                 color: black; /* Mengubah warna teks menjadi hitam */
-             }
-         </style>
-         <a class="navbar-brand"><img src="/img/logo-navbar.png" alt="" width="60" height="36">Bengkel Arilla</a>
-         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-             data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-             aria-label="Toggle navigation">
-             <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarResponsive">
-             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Beranda">
-                     <a class="nav-link" href="/admin-dashboard">
-                         <i class="fas fa-fw fa-house"></i>
-                         <span class="nav-link-text">Beranda</span>
-                     </a>
-                 </li>
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="DataPelanggan">
-                     <a class="nav-link" href="Data Pelanggan">
-                         <i class="fa-solid fa-fw fa-clipboard-list"></i> 
-                         <span class="nav-link-text">Data Pelanggan</span>
-                     </a>
-                 </li>
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="product">
-                     <a class="nav-link" href="/products">
-                         <i class="fa-solid fa-fw fa-box"></i> 
-                         <span class="nav-link-text">Product</span>
-                     </a>
-                 </li>
-                 
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="barang_masuk">
-                     <a class="nav-link" href="/barang_masuk">
-                         <i class="bi bi-arrow-left"></i> 
-                         <span class="nav-link-text">Barang Masuk</span>
-                     </a>
-                 </li>
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="barang_keluar">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
+        <style>
+        .navbar-brand img {
+            margin-right: 10px; 
+        }
+        .navbar-nav.ml-auto .nav-link {
+            color: black; /* Mengubah warna teks menjadi hitam */
+        }
+        </style>
+        <a class="navbar-brand"><img src="/img/logo-navbar.png" alt="" width="60" 
+            height="36">Bengkel Arilla</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Beranda">
+                    <a class="nav-link" href="/admin-dashboard">
+                        <i class="fas fa-fw fa-house"></i>
+                        <span class="nav-link-text">Beranda</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="DataPelanggan">
+                    <a class="nav-link" href="Data Pelanggan">
+                        <i class="fa-solid fa-fw fa-clipboard-list"></i> 
+                        <span class="nav-link-text">Data Pelanggan</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="product">
+                    <a class="nav-link" href="/products">
+                        <i class="fa-solid fa-box-open"></i> 
+                        <span class="nav-link-text">Product</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="kategori_produk">
+                    <a class="nav-link" href="/kategori_produk">
+                        <i class="fa fa-folder"></i> 
+                        <span class="nav-link-text">Kategori Produk</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="barang_masuk">
+                    <a class="nav-link" href="/barang_masuk">
+                        <i class="bi bi-arrow-left"></i> 
+                        <span class="nav-link-text">Barang Masuk</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="barang_keluar">
                     <a class="nav-link" href="/barang_keluar">
                         <i class="bi bi-arrow-right"></i> 
                         <span class="nav-link-text">Barang Keluar</span>
@@ -92,19 +94,18 @@
                         <span class="nav-link-text">Laporan</span>
                     </a>
                 </li>
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
                     <a class="nav-link" href="log" data-toggle="modal" data-target="#logoutModal">
                         <i class="fa fa-fw fa-sign-out-alt"></i> 
                         <span class="nav-link-text">Logout</span>
                     </a>
                 </li>
-             </ul>
-             
-         </div>
-     </nav>
-     <div class="contain">
-          @yield('contain')
-</div>
+            </ul>
+        </div>
+    </nav>
+    <div class="contain">
+        @yield('contain')
+    </div>
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

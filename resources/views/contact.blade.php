@@ -1,28 +1,29 @@
 @extends('layouts.main')
 @section('container')
-    {{-- Kontak  --}}
-    <section class="kontak">
-        <div class="container">
-            <div class="row">
-                <div class="col text-white mt-3">
-                    <h1 class="text-center">Hubungi Kami</h1>
-                    <div class="contact-area">
-                        <div class="container">
-                            <div class="col">
-                                <div class="contact-from">
-                                    <form class="row g-3">
-                                        <div class="col-12">
-                                            <label for="inputEmail4" class="form-label">Nama :</label>
-                                            <input type="email" class="form-control" id="inputEmail">
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="inputAddress" class="form-label">Email :</label>
-                                            <input type="text" class="form-control" id="inputAddress">
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="inputAddress" class="form-label">Alamat</label>
-                                            <textarea type="text" class="form-control" id="inputAddress"  cols="30"
-                                                rows="10"></textarea>
+
+{{-- Kontak  --}}
+<section class="kontak">
+    <div class="container">
+        <div class="row">
+            <div class="col text-white mt-3">
+                <h1 class="text-center">Hubungi Kami</h1>
+                <div class="contact-area">
+                    <div class="container">
+                        <div class="col">
+                            <div class="contact-from">
+                                <form class="row g-3">
+                                    <div class="col-12">
+                                        <label for="inputEmail4" class="form-label">Nama :</label>
+                                        <input type="email" class="form-control" id="inputEmail">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputAddress" class="form-label">Email :</label>
+                                        <input type="text" class="form-control" id="inputAddress">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputAddress" class="form-label">Alamat</label>
+                                        <textarea type="text" class="form-control" id="inputAddress"  cols="30"
+                                            rows="10"></textarea>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <button type="submit" class="btn btn-primary">SUBMIT</button>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\KategoriProdukController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
@@ -44,7 +45,10 @@ Route::resource('products', ProductController::class);
 Route::get('/produk/{id}', [ProductController::class, 'show'])->name('produk_show');
 Route::post('/products/{id}/purchase', [ProductController::class, 'purchase'])->name('purchase');
 
-Route::resource('inventory_reports', InventoryReportController::class);
+Route::resource('kategori_produk', KategoriProdukController::class);
+
+
+// Route::resource('inventory_reports', InventoryReportController::class);
 
 Route::get('/lupa_sandi', function () {
     return view('auth.lupa_sandi');
@@ -64,9 +68,10 @@ Route::get('/produk', function () {
 });
 
 
-Route::get('/pemesanan', function () {
-    return view('pemesanan.index');
-});
+// Route::get('/pemesanan', function () {
+//     return view('pemesanan.index');
+// });
+
 Route::get('/cara-beli', function () {
     return view('Beli.indexbeli');
 });

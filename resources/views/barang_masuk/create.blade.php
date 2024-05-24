@@ -6,13 +6,13 @@
 
 @if ($errors->any())
 <div class="pt-3">
-     <div class="alert alert-danger offset-md-3">
-          <ul>
-               @foreach ($errors->all() as $item)
-                   <li>{{ $item }}</li>
-               @endforeach
-          </ul>
-     </div>
+    <div class="alert alert-danger offset-md-3">
+        <ul>
+            @foreach ($errors->all() as $item)
+                <li>{{ $item }}</li>
+            @endforeach
+        </ul>
+    </div>
 </div>
 @endif
 <div class="container">
@@ -38,15 +38,15 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="jumlah_masuk" class="col-sm-2 col-form-label">Jumlah Masuk</label>
+                <label for="jumlah_masuk" class="col-sm-2 col-form-label">Stock Masuk</label>
                 <div class="col-sm-10">
                     <input type="integer" class="form-control" name='jumlah_masuk'  value= "{{ Session::get ('jumlah_masuk')}}" id="jumlah_masuk">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="jumlah_stock" class="col-sm-2 col-form-label">Jumlah Stock</label>
+                <label for="jumlah_stock" class="col-sm-2 col-form-label">Jumlah Stock Masuk</label>
                 <div class="col-sm-10">
-                    <input type="integer" class="form-control" name='jumlah_stock'  value= "{{ Session::get ('jumlah_stock')}}" id="jumlah_stock">
+                    <input type="integer" class="form-control" name='jumlah_stock'  value= "{{ Session::get ('jumlah_stock')}}" id="jumlah_stock" readonly>
                 </div>
             </div>
             <div class="mb-3 row">

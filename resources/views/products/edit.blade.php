@@ -14,7 +14,7 @@
      </div>
 </div>
 @endif
- <form action='{{ url('products/'.$data->product_code) }}' method='post' enctype="multipart/form-data">
+ <form action='{{ url('products/'.$data->product_code) }}' method='post'>
 @csrf
 @method('PUT')
 <div class="my-3 p-3 bg-body rounded shadow-sm offset-md-3">

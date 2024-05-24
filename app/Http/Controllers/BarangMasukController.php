@@ -34,27 +34,26 @@ class BarangMasukController extends Controller
             
         // ]);
 
-            Session::flash('id',$request->id);    
-            Session::flash('tanggal_masuk',$request->tanggal_masuk);
-            Session::flash('kode_barang',$request->kode_barang);
-            Session::flash('nama_barang',$request->nama_barang);
-            Session::flash('jumlah_masuk',$request->jumlah_masuk);
-            Session::flash('jumlah_stock',$request->jumlah_stock);
-            Session::flash('harga_satuan',$request->harga_satuan);
-
-            $data =[
-                'id' =>$request->id,
-                'tanggal_masuk'=>$request->tanggal_masuk,
-                'kode_barang'=>$request->kode_barang,
-                'nama_barang'=>$request->nama_barang,
-                'jumlah_masuk'=>$request->jumlah_masuk,
-                'jumlah_stock'=>$request->jumlah_stock,
-                'harga_satuan'=>$request->harga_satuan,
-            ];
-            // Proses penyimpanan data baru
-            BarangMasuk::create($data);
-
-            // Redirect ke halaman utama dengan pesan sukses
-            return redirect()->route('barang_masuk.index')->with('success', 'Data Barang Masuk berhasil ditambahkan');
+        $request->validate([
+            'tanggal_masuk' => 'required',
+            'kode_barang' => 'required',
+            'nama_barang' => 'required',
+            'jumlah_masuk' => 'required|integer',
+            'harga_satuan' => 'required',
+        ]);
+    
+        $data = [
+            'tanggal_masuk' => $request->tanggal_masuk,
+            'kode_barang' => $request->kode_barang,
+            'nama_barang' => $request->nama_barang,
+            'jumlah_masuk' => $request->jumlah_masuk,
+            'harga_satuan' => $request->harga_satuan,
+        ];
+    
+        // Proses penyimpanan data baru
+        BarangMasuk::create($data);
+    
+        // Redirect ke halaman utama dengan pesan sukses
+        return redirect()->route('barang_masuk.index')->with('success', 'Data Barang Masuk berhasil ditambahkan');
     }
 }

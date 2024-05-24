@@ -39,8 +39,9 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request )
     {
+
         Session::flash('id',$request->id);
         Session::flash('title',$request->title);
         Session::flash('category_id',$request->category_id);
@@ -48,9 +49,10 @@ class ProductController extends Controller
         Session::flash('stock',$request->stock);
         Session::flash('product_code',$request->product_code);
         Session::flash('description',$request->description);
-        Session::flash('image',$request->image);
+        $image = $request->image;
 
-        $fileName = time() . '.' . $request->image->extension();
+        $fileName = $request->image->getClientOriginalName();
+
         $request->image->storeAs('./public/', $fileName);
 
         $data =[
@@ -61,7 +63,7 @@ class ProductController extends Controller
             'stock'=>$request->stock,
             'product_code'=>$request->product_code,
             'description'=>$request->description,
-            'image'=>$request->image,
+            'image'=>$fileName,
         ];
         Product::create($data);
 
@@ -127,7 +129,8 @@ class ProductController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            $fileName = time() . '.' . $request->image->extension();
+            $fileName = $request->image->getClientOriginalName();
+
             $request->image->storeAs('./public/', $fileName);
 
             $data['image'] = $fileName;
