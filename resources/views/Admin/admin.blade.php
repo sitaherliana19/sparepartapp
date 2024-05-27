@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="DataPelanggan">
-                    <a class="nav-link" href="Data Pelanggan">
+                    <a class="nav-link" href="/data_pelanggan">
                         <i class="fa-solid fa-fw fa-clipboard-list"></i> 
                         <span class="nav-link-text">Data Pelanggan</span>
                     </a>

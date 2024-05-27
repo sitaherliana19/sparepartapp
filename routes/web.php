@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\DataPelangganController;
 use App\Http\Controllers\InventoryReportController;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,12 +41,6 @@ Route::get('/halamanutama', function () {
 Route::get('/admin-dashboard', function () {
     return view('Admin.admin-dashboard');
 });
-
-Route::resource('products', ProductController::class);
-Route::get('/produk/{id}', [ProductController::class, 'show'])->name('produk_show');
-Route::post('/products/{id}/purchase', [ProductController::class, 'purchase'])->name('purchase');
-
-Route::resource('kategori_produk', KategoriProdukController::class);
 
 
 // Route::resource('inventory_reports', InventoryReportController::class);
@@ -111,6 +106,31 @@ Route::post('/barang_masuk', [BarangMasukController::class, 'store'])->name('bar
 Route::get('/barang_keluar', [BarangKeluarController::class, 'index'])->name('barang_keluar.index');
 Route::get('/barang_keluar/create', [BarangKeluarController::class, 'create'])->name('barang_keluar.create');
 Route::post('/barang_keluar', [BarangKeluarController::class, 'store'])->name('barang_keluar');
+
+Route::get('products', [ProductController::class, 'index'])->name('products.index');
+Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('products', [ProductController::class, 'store'])->name('products.store');
+Route::get('products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::put('products/{id}', [ProductController::class, 'update'])->name('products.update');
+Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::post('/products/{id}/purchase', [ProductController::class, 'purchase'])->name('purchase');
+
+Route::get('kategori_produk', [KategoriProdukController::class, 'index'])->name('kategori_produk.index');
+Route::get('kategori_produk/create', [KategoriProdukController::class, 'create'])->name('kategori_produk.create');
+Route::post('kategori_produk', [KategoriProdukController::class, 'store'])->name('kategori_produk.store');
+Route::get('kategori_produk/{id}', [KategoriProdukController::class, 'show'])->name('kategori_produk.show');
+Route::get('kategori_produk/{id}/edit', [KategoriProdukController::class, 'edit'])->name('kategori_produk.edit');
+Route::put('kategori_produk/{id}', [KategoriProdukController::class, 'update'])->name('kategori_produk.update');
+Route::delete('kategori_produk/{id}', [KategoriProdukController::class, 'destroy'])->name('kategori_produk.destroy');
+
+Route::get('/data_pelanggan', [DataPelangganController::class, 'index'])->name('data_pelanggan.index');
+Route::get('/data_pelanggan/create', [DataPelangganController::class, 'create'])->name('data_pelanggan.create');
+Route::post('/data_pelanggan', [DataPelangganController::class, 'store'])->name('data_pelanggan.store');
+Route::get('/data_pelanggan/{id}', [DataPelangganController::class, 'show'])->name('data_pelanggan.show');
+Route::get('/data_pelanggan/{id}/edit', [DataPelangganController::class, 'edit'])->name('data_pelanggan.edit');
+Route::put('/data_pelanggan/{id}', [DataPelangganController::class, 'update'])->name('data_pelanggan.update');
+Route::delete('/data_pelanggan/{id}', [DataPelangganController::class, 'destroy'])->name('data_pelanggan.destroy');
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -8,7 +8,7 @@
             <div class="my-3 p-3 bg-body rounded shadow-sm offset-md-2">
                 <!-- FORM PENCARIAN -->
                 <div class="pb-3">
-                    <form class="d-flex" action="{{ url('kategori_produk/create') }}" 
+                    <form class="d-flex" action="{{ url('data_pelanggan/create') }}" 
                     method="get">
                         <input class="form-control me-1" type="search" name="katakunci" 
                         value="{{ Request::get('katakunci') }}" placeholder="Masukkan kata kunci" 
@@ -19,7 +19,7 @@
 
                 <!-- TOMBOL TAMBAH DATA -->
                 <div class="pb-3">
-                    <a href='{{ url('kategori_produk/create') }}' 
+                    <a href='{{ url('data_pelanggan/create') }}' 
                     class="btn btn-primary">+ Tambah Data</a>
                 </div>
 
@@ -28,8 +28,11 @@
                         <thead>
                             <tr>
                                 <th class="col-md-1">Id</th>
-                                <th class="col-md-2">Nama Kategori</th>
-                                <th class="col-md-2">Kode Tag Kategori</th>
+                                <th class="col-md-2">Nama Pelanggan</th>
+                                <th class="col-md-1">Email</th>
+                                <th class="col-md-2">Alamat</th>
+                                <th class="col-md-2">No Handphone</th>
+                                <th class="col-md-2">Jumlah Belanja</th>
                                 <th class="col-md-2">Action</th>
                             </tr>
                         </thead>
@@ -38,13 +41,16 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td>{{ $item ->nama_kategori }}</td>
-                                <td>{{ $item ->kode_tag_kategori }}</td>
+                                <td>{{ $item ->nama }}</td>
+                                <td>{{ $item ->email }}</td>
+                                <td>{{ $item ->alamat }}</td>
+                                <td>{{ $item ->no_handphone }}</td>
+                                <td>{{ $item ->jumlah_belanja }}</td>
                                 <td>
-                                    <a href='{{ url('kategori_produk/'.$item->id.'/edit') }}' 
+                                    <a href='{{ url('data_pelanggan/'.$item->id.'/edit') }}' 
                                         class="btn btn-warning btn-sm mb-2" style="min-width: 60px;">Edit</a>
                                     <form onsubmit="return confirm('Apakah Anda yakin akan menghapus data ini?')" 
-                                        class='d-inline' action="{{ url('kategori_produk/'.$item->id) }}" method="post">
+                                        class='d-inline' action="{{ url('data_pelanggan/'.$item->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" name="submit" class="btn btn-danger btn-sm mb-2" 
