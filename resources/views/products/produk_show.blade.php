@@ -1,12 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Produk</title>
     <style>
         .product-container {
             padding: 20px;
@@ -38,10 +32,9 @@
             margin: 0 10px;
         }
     </style>
-</head>
 <body>
-    <hr style="border-bottom: 2px solid black; margin-top: 40px; margin-bottom: 20px;"> <!-- Garis pemisah -->
-    <div class="product-container">
+<hr style="border-bottom: 2px solid black; margin-top: 40px; margin-bottom: 20px;"> <!-- Garis pemisah -->
+    <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <div class="card shadow-sm" style="width: 18rem; margin-left: auto;">
@@ -55,17 +48,18 @@
                     <p>Stok: {{ $product->stock }}</p>
                     <p>Deskripsi: {{ $product->description }}</p>
 
-                    <form action="{{ route('purchase', ['id' => $product->id]) }}" method="post">
+                    <form action="{{ route('cart.add') }}" method="post">
                         @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <div class="box-info-produk" style="background-color: #f7f7f7; border: 2px solid #b0afaf; padding: 15px;">
                             <label for="quantity">Jumlah:</label>
-                            <div class="quantity-controls"  style="display: flex; align-items: center; margin-bottom: 10px; margin-top: 10px;">
+                            <div class="quantity-controls" style="display: flex; align-items: center; margin-bottom: 10px; margin-top: 10px;">
                                 <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ $product->stock }}" style="margin-right: 5px;">
                                 <button type="button" id="decrement" style="background-color: #804343; color: white; margin-right: 5px;">-</button>
                                 <button type="button" id="increment" style="background-color: #804343; color: white;">+</button>
                             </div>
                             <button type="submit" class="btn btn-light" style="background-color: #804343; color: white;">
-                                <i class="fas fa-shopping-cart"></i> Beli
+                                <i class="fas fa-shopping-cart"></i> Tambah Keranjang
                             </button>
                         </div>
                     </form>
@@ -89,24 +83,26 @@
  
 @endsection
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const decrementButton = document.getElementById('decrement');
-        const incrementButton = document.getElementById('increment');
-        const quantityInput = document.getElementById('quantity');
 
-        decrementButton.addEventListener('click', function() {
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue > 1) {
-                quantityInput.value = currentValue - 1;
-            }
-        });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const decrementButton = document.getElementById('decrement');
+            const incrementButton = document.getElementById('increment');
+            const quantityInput = document.getElementById('quantity');
 
-        incrementButton.addEventListener('click', function() {
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue < parseInt(quantityInput.max)) {
-                quantityInput.value = currentValue + 1;
-            }
+            decrementButton.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+
+            incrementButton.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue < parseInt(quantityInput.max)) {
+                    quantityInput.value = currentValue + 1;
+                }
+            });
         });
-    });
-</script>
+    </script>
+

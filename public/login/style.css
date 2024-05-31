@@ -7,55 +7,7 @@
      padding: 2rem 1rem;
      background-color: #e2defe;
  }
- .jumbotronppdb {
-     background-image: url(/img/gambar1.jpg);
-     height: 400px;
- }
- 
- .mkppdb {
-     background: linear-gradient(to right, #248FF0, #57ABF9);
- }
- 
- #Konsep {
-     padding: 5rem 4rem;
-     background-color: #e2defe;
- }
- 
- #jalur {
-     padding: 5rem 4rem;
-     background-color: #d6d2e9;
- }
- 
- .j-prestasi {
-     padding: 5rem 4rem;
-     background-color: #27a55c;
- }
- .j-perpindahan {
-     padding: 5rem 4rem;
-     background-color: #1b948e;
- }
- .j-afirmasi {
-     padding: 5rem 4rem;
-     background-color: #FF6347;
- }
- .j-zonasi {
-     padding: 5rem 4rem;
-     background-color: #9370DB;
- }
- 
- .jumbotrondeskripsi {
-     background-image: url(/img/gambar1.jpg);
-     height: 400px;
- }
- 
- .permendikbud {
-     background: linear-gradient(to right, #248FF0, #57ABF9);
- }
- 
- .alurproses{
-     padding: 5rem 4rem;
-     background-color: #d6d2e9;
- }
+
  
  #footer {
      background-color: #B59898;

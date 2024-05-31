@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DataPelangganController;
 use App\Http\Controllers\InventoryReportController;
 use Illuminate\Support\Facades\Auth;
@@ -50,11 +52,12 @@ Route::get('/lupa_sandi', function () {
 });
 
 
-Route::get('/kontak', function () {
+Route::get('/contact', function () {
     return view('contact', [
-        "title" => "Kontak"
+        "title" => "contact"
     ]);
 });
+
 
 Route::get('/produk', function () {
     $pr = Product::get();
@@ -85,8 +88,6 @@ Route::post('/login_post', [LoginController::class, 'login_post'])->name('login_
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->name('logout');
 Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/registerpost', [LoginController::class, 'register_post'])->name('register_post');
-
-
 
 Route::post('/login-prosesuser', [LoginController::class, 'login_prosesuser'])->name('login-prosesuser');
 Route::get('/logoutuser', [LoginController::class, 'logoutuser'])->name('logoutuser');
@@ -131,6 +132,21 @@ Route::get('/data_pelanggan/{id}', [DataPelangganController::class, 'show'])->na
 Route::get('/data_pelanggan/{id}/edit', [DataPelangganController::class, 'edit'])->name('data_pelanggan.edit');
 Route::put('/data_pelanggan/{id}', [DataPelangganController::class, 'update'])->name('data_pelanggan.update');
 Route::delete('/data_pelanggan/{id}', [DataPelangganController::class, 'destroy'])->name('data_pelanggan.destroy');
+
+// Keranjang
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::get('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
+
+// Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+
+
+// Middleware untuk memastikan hanya user yang login bisa mengakses keranjang
+Route::middleware(['auth'])->group(function () {
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+});
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
