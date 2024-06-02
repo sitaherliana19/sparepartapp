@@ -88,6 +88,12 @@
                         <span class="nav-link-text">Barang Keluar</span>
                     </a>
                 </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="pengiriman">
+                    <a class="nav-link" href="/pengiriman">
+                        <i class="fas fa-shipping-fast"></i> 
+                        <span class="nav-link-text">Pengiriman</span>
+                    </a>
+                </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="laporan">
                     <a class="nav-link" href="/laporan">
                         <i class="bi bi-bar-chart"></i> 

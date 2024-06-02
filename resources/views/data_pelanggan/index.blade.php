@@ -32,7 +32,6 @@
                                 <th class="col-md-1">Email</th>
                                 <th class="col-md-2">Alamat</th>
                                 <th class="col-md-2">No Handphone</th>
-                                <th class="col-md-2">Jumlah Belanja</th>
                                 <th class="col-md-2">Action</th>
                             </tr>
                         </thead>
@@ -45,7 +44,6 @@
                                 <td>{{ $item ->email }}</td>
                                 <td>{{ $item ->alamat }}</td>
                                 <td>{{ $item ->no_handphone }}</td>
-                                <td>{{ $item ->jumlah_belanja }}</td>
                                 <td>
                                     <a href='{{ url('data_pelanggan/'.$item->id.'/edit') }}' 
                                         class="btn btn-warning btn-sm mb-2" style="min-width: 60px;">Edit</a>

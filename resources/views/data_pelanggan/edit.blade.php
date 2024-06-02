@@ -48,14 +48,6 @@
                </div>
           </div>
           <div class="mb-3 row">
-               <label for="jumlah_belanja" class="col-sm-2 col-form-label">Jumlah Belanja</label>
-               <div class="col-sm-10">
-                    <input type="text" class="form-control" name='jumlah_belanja' 
-                    value= "{{ $data->jumlah_belanja}}" id="jumlah_belanja">
-               </div>
-          </div>
-            
-          <div class="mb-3 row">
                <div class="col-sm-2 d-flex justify-content-end"></div>
                <div class="col-sm-2 ">
                     <button type="button" class="btn btn-secondary" 

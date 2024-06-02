@@ -39,20 +39,12 @@ class DataPelangganController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'nama' => 'required',
-        //     'email' => 'required|email|unique:customers',
-        //     'alamat' => 'required',
-        //     'no_handphone' => 'required',
-        //     'jumlah_belanja' => 'required|integer',
-        // ]);
 
         $data = [
             'nama' => $request->nama,
             'email' => $request->email,
             'alamat' => $request->alamat,
             'no_handphone' => $request->no_handphone,
-            'jumlah_belanja' => $request->jumlah_belanja,
         ];
 
         DataPelanggan::create($data);
@@ -88,7 +80,6 @@ class DataPelangganController extends Controller
             'email' => $request->email,
             'alamat' => $request->alamat,
             'no_handphone' => $request->no_handphone,
-            'jumlah_belanja' => $request->jumlah_belanja,
         ];
 
         DataPelanggan::where('id', $id)->update($data); 

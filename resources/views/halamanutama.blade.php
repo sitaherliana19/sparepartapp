@@ -1,4 +1,5 @@
 @extends('layouts.main')
+
 @section('container')
     {{-- Jumbotron --}}
     <section class="jumbotron start-5 justify-content-center jumbotron-fluid">
