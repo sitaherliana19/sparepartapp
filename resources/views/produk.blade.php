@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('container')
 
-    {{-- Akhir  --}}
     <section class="produk" id="produk">
         <div class="container">
             <div class="row text-center">
@@ -31,7 +30,7 @@
     {{--  AKhir  --}}
 
     {{-- Footer --}}
-    <footer class="sticky-footer p-3" id="footer">
+    <footer class="sticky-footer p-3" id="footer" style="margin-top: 20px;">
         <div class="container">
             <div class="text-center text-white">
                 <p>Copyright © 
@@ -39,9 +38,8 @@
             </div>
         </div>
     </footer>
-    {{-- Akhir Footer --}}
 
     {{-- Scroll Up --}}
     <a href="#" class="ignielToTop"></a>
-    {{-- Akhir Scroll Up --}}
+
 @endsection

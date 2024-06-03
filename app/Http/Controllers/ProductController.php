@@ -39,36 +39,37 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request )
+    public function store(Request $request)
     {
+    $request->validate([
+        'title' => 'required',
+        'category_id' => 'required',
+        'price' => 'required',
+        'stock' => 'required',
+        'product_code' => 'required',
+        'description' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        Session::flash('id',$request->id);
-        Session::flash('title',$request->title);
-        Session::flash('category_id',$request->category_id);
-        Session::flash('price',$request->price);
-        Session::flash('stock',$request->stock);
-        Session::flash('product_code',$request->product_code);
-        Session::flash('description',$request->description);
-        $image = $request->image;
+    $fileName = $request->image->getClientOriginalName();
 
-        $fileName = $request->image->getClientOriginalName();
+    $request->image->storeAs('public/images', $fileName);
 
-        $request->image->storeAs('./public/', $fileName);
+    $data = [
+        'title' => $request->title,
+        'category_id' => $request->category_id,
+        'price' => $request->price,
+        'stock' => $request->stock,
+        'product_code' => $request->product_code,
+        'description' => $request->description,
+        'image' => $fileName,
+    ];
 
-        $data =[
-            'id' =>$request->id,
-            'title'=>$request->title,
-            'category_id'=>$request->category_id,
-            'price'=>$request->price,
-            'stock'=>$request->stock,
-            'product_code'=>$request->product_code,
-            'description'=>$request->description,
-            'image'=>$fileName,
-        ];
-        Product::create($data);
+    Product::create($data);
 
-        return redirect()->to('products')->with('success', 'Berhasil menambahkan data');
+    return redirect()->route('products.index')->with('success', 'Berhasil menambahkan data');
     }
+
 
     /**
      * Display the specified resource.

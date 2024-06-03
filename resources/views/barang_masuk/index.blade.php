@@ -30,7 +30,6 @@
                                 <th class="col-md-2">Kode Barang</th>
                                 <th class="col-md-2">Nama Barang</th>
                                 <th class="col-md-2">Stock Masuk</th>
-                                <th class="col-md-2">Jumlah Stock Masuk</th>
                                 <th class="col-md-2">Harga Satuan</th>
                             </tr>
                         </thead>
@@ -45,7 +44,6 @@
                                     <td>{{ $item->kode_barang }}</td>
                                     <td>{{ $item->nama_barang}}</td>
                                     <td>{{ $item->jumlah_masuk }}</td>
-                                    <td>{{ $item->jumlah_stock }}</td>
                                     <td>{{ $item->harga_satuan }}</td>
                                 </tr>
                                 @php

@@ -36,9 +36,9 @@
 <hr style="border-bottom: 2px solid black; margin-top: 40px; margin-bottom: 20px;"> <!-- Garis pemisah -->
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card shadow-sm" style="width: 18rem; margin-left: auto;">
-                    <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="Gambar Produk">
+            <div class="col-md-4 ">
+                <div class="card shadow-sm" style="width: 18rem; margin-left: auto; margin-top: 50px;" >
+                    <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="Gambar Produk" style="margin-top: 20px;">
                 </div>
             </div>
             <div class="col-md-6 offset-md-1">
@@ -71,16 +71,14 @@
 </body>
 </html>
 {{-- Footer --}}
-<footer class="p-3" id="footer">
-     <div class="container">
-         <div class="text-center text-white">
-             <p>Copyright © 
-             </p>
-         </div>
-     </div>
- </footer>
- {{-- Akhir Footer --}}
- 
+<footer class="p-3" id="footer" style="margin-top: 70px;">
+    <div class="container">
+        <div class="text-center text-white">
+            <p>Copyright © 
+            </p>
+        </div>
+    </div>
+</footer> 
 @endsection
 
 

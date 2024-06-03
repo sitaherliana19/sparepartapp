@@ -21,4 +21,5 @@ class BarangKeluar extends Model
     ];
 
     public $timestamps = false;
+    
 }

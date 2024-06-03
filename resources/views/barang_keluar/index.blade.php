@@ -18,9 +18,9 @@
     <div class="row justify-content-md-center">
         <div class="col-md-12">
             <div class="my-2 p-3 bg-body rounded shadow-sm offset-md-2">
-                <div class="pb-3">
+                {{-- <div class="pb-3">
                     <a href='{{ url('barang_keluar/create') }}' class="btn btn-primary">+ Tambah Data Barang Keluar</a>
-                </div>
+                </div> --}}
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -30,7 +30,6 @@
                                 <th class="col-md-2">Kode Barang</th>
                                 <th class="col-md-2">Nama Barang</th>
                                 <th class="col-md-2">Stock Keluar</th>
-                                <th class="col-md-2">Jumlah Stock Keluar</th>
                                 <th class="col-md-2">Harga Satuan</th>
                             </tr>
                         </thead>
@@ -45,7 +44,6 @@
                                     <td>{{ $item->kode_barang }}</td>
                                     <td>{{ $item->nama_barang}}</td>
                                     <td>{{ $item->jumlah_keluar }}</td>
-                                    <td>{{ $item->jumlah_stock }}</td>
                                     <td>{{ $item->harga_satuan }}</td>
                                 </tr>
                                 @php

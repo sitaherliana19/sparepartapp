@@ -44,12 +44,6 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="jumlah_stock" class="col-sm-2 col-form-label">Jumlah Stock</label>
-                <div class="col-sm-10">
-                    <input type="integer" class="form-control" name='jumlah_stock'  value= "{{ Session::get ('jumlah_stock')}}" id="jumlah_stock">
-                </div>
-            </div>
-            <div class="mb-3 row">
                 <label for="harga_satuan" class="col-sm-2 col-form-label">Harga Satuan</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name='harga_satuan'  value= "{{ Session::get ('harga_satuan')}}"  id="harga_satuan">

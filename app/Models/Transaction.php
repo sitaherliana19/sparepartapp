@@ -13,6 +13,8 @@ class Transaction extends Model
         'city',
         'postal_code',
         'total_price',
+        'product_code',
+        'product_name',
     ];
 
     public function user()
