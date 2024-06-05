@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BarangKeluar;
+use App\Models\Order;
 use App\Models\Transaction;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class CheckoutController extends Controller
     }
 
     public function process(Request $request)
-{
+    {
     $request->validate([
         'address' => 'required|string',
         'city' => 'required|string',
@@ -50,11 +51,11 @@ class CheckoutController extends Controller
             // Buat entri baru dalam tabel BarangKeluar
             BarangKeluar::create([
                 'tanggal_keluar' => now(),
-                'kode_barang' => $product->product_code, // Gunakan product_code dari produk
-                'nama_barang' => $product->title, // Atau gunakan nama barang jika perlu
+                'kode_barang' => $product->product_code,
+                'nama_barang' => $product->title,
                 'jumlah_keluar' => $item['quantity'],
                 'jumlah_stock' => $product->stock,
-                'harga_satuan' => $harga_satuan, // Gunakan harga satuan dari produk
+                'harga_satuan' => $harga_satuan,
             ]);
         } else {
             // Jika stok tidak mencukupi, kembalikan dengan pesan kesalahan
@@ -74,19 +75,40 @@ class CheckoutController extends Controller
     // Hitung grand total
     $grandtotal = $totalHargaProduk + $totalOngkosKirim;
 
+    // Simpan grand total dalam sesi
+    session()->put('grandtotal', $grandtotal);
+
     // Buat transaksi baru untuk setiap item di keranjang
     foreach ($cartItems as $item) {
         $product = Product::find($item['product_id']);
         if ($product) {
+            // Hitung total price dari setiap pesanan sebagai jumlah dari totalHargaProduk dan totalOngkosKirim
+            $total_price = $totalHargaProduk + $totalOngkosKirim;
+
             Transaction::create([
                 'user_id' => $user->id,
                 'address' => $request->input('address'),
                 'city' => $request->input('city'),
                 'postal_code' => $request->input('postal_code'),
-                'total_price' => $grandtotal,
-                'product_code' => $product->product_code, // Menyimpan product_code
-                'product_name' => $product->title, // Menyimpan product_name
+                'total_price' => $total_price,
+                'product_code' => $product->product_code,
+                'product_name' => $product->title,
             ]);
+
+            // Buat pesanan baru
+            $order = new Order();
+            $order->address = $request->input('address');
+            $order->city = $request->input('city');
+            $order->postal_code = $request->input('postal_code');
+            $order->user_id = $user->id;
+            $order->product_id = $item->product_id;
+            $order->product_name = $product->title;
+            $order->quantity = $item->quantity;
+            $order->total_price = $total_price; // Menggunakan total_price yang sudah dihitung
+            $order->status = 'belum dibayar';
+
+            // Simpan pesanan ke database
+            $order->save();
 
             // Kurangi stok produk
             $product->stock -= $item['quantity'];
@@ -97,8 +119,9 @@ class CheckoutController extends Controller
     // Hapus keranjang setelah transaksi
     $user->cart()->delete();
 
-    return redirect()->route('checkout.index')->with('success', 'Pembayaran berhasil dilakukan. Keranjang Anda telah dikosongkan.');
+    return redirect()->route('pesanan.index')->with('success', 'Pesanan Anda Telah Berhasil Dibuat');
     }
+
 
 
 }

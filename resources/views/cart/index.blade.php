@@ -165,9 +165,6 @@
             const totalProductElement = document.getElementById('total_product');
             totalProductElement.innerText = 'Rp. ' + formatRupiah(totalHargaProduk);
 
-            // Perbarui subtotal untuk produk saat ini
-            const subtotalElement = input.closest('.cart_item').querySelector('.cart_total .price');
-            subtotalElement.innerText = 'Rp. ' + formatRupiah(subtotal);
         }
 
         function formatRupiah(angka) {

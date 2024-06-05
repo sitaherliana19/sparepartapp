@@ -66,6 +66,11 @@
                     @endguest
                     @auth
                         <!-- Menampilkan dropdown jika pengguna sudah login -->
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="product">
+                            <a class="nav-link" href="/pesanan-saya">
+                                <span class="nav-link-text">Pesanan Saya</span>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ request()->is('logout') ? 'active' : '' }}" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                 <i class="fa fa-user"></i> {{ Auth::user()->name }}

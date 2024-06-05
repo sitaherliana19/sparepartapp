@@ -30,7 +30,7 @@
             @php
                 $quantity = intval($item->quantity); // Mengonversi ke integer
                 $price = floatval($item->product->price); // Mengonversi ke float
-                $total = $quantity * $price;
+                $subtotaltotal = $quantity * $price;
             @endphp
             <tr id="product_{{ $item->product->id }}" class="cart_item">
                 <td class="cart_product" style="text-align: center;">
@@ -69,38 +69,24 @@
             <div class="totaltable">
                 <table class="table notranslate">
                     <tbody>
-                        <tr class="cart_total_price">
-                            <td class="text-right">Total Harga Produk</td>
-                            <td class="price notranslate" id="total_product">
                                 @php
                                 $totalHargaProduk = 0;
                                 foreach($cartItems as $item) {
-                                    // Menghilangkan karakter non-angka dari harga produk
-                                    $cleanPrice = preg_replace("/[^0-9]/", "", $item->product->price);
-                                    // Konversi harga yang telah dibersihkan menjadi tipe data float
-                                    $price = floatval($cleanPrice);
-                                    // Mengalikan dengan quantity untuk mendapatkan subtotal
                                     $subtotal = $price * $item->quantity;
                                     $totalHargaProduk += $subtotal;
                                 }
-                                // Ubah format ke integer tanpa desimal
-                                $totalHargaProduk = intval($totalHargaProduk);
-                                // Tampilkan total harga produk dalam format Rupiah
-                                echo 'Rp. ' . number_format($totalHargaProduk, 0, ',', '.');
+                                $totalOngkosKirim = $totalHargaProduk * 0.1;
+                                $grandtotal = $totalHargaProduk + $totalOngkosKirim;
                                 @endphp
-                            </td>
-                        </tr>
+                        <td class="text-right">Total Harga Produk</td>
+                            <td class="price notranslate" id="total_product">
+                                {{ 'Rp. ' . number_format($totalHargaProduk, 0, ',', '.') }}
+                        </td>
                         <tr class="cart_total_price">
-                            @php
-                            $totalOngkosKirim = $totalHargaProduk * 0.1;
-                            @endphp
                             <td class="text-right">Total Ongkos Kirim</td>
                             <td class="price text-right" id="total_shipping">{{ 'Rp. ' . number_format($totalOngkosKirim, 0, ',', '.') }}</td>
                         </tr>
                         <tr class="cart_total_price">
-                            @php
-                            $grandtotal = $totalHargaProduk + $totalOngkosKirim;
-                            @endphp
                             <td class="total_price_container text-right"><span>SubTotal</span></td>
                             <td class="price text-right" id="total_price_container">{{ 'Rp. ' . number_format($grandtotal, 0, ',', '.') }}</td>
                         </tr>

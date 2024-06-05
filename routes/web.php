@@ -14,6 +14,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DataPelangganController;
 use App\Http\Controllers\InventoryReportController;
+use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -65,11 +66,6 @@ Route::get('/produk', function () {
     $title = "product";
     return view('produk',compact(['pr','title']) );
 });
-
-
-// Route::get('/pemesanan', function () {
-//     return view('pemesanan.index');
-// });
 
 Route::get('/cara-beli', function () {
     return view('Beli.indexbeli');
@@ -154,5 +150,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 });
+
+Route::get('/pesanan-saya', [PesananController::class, 'index'])->name('pesanan.index');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
