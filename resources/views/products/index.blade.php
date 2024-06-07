@@ -41,7 +41,7 @@
                                 <td>{{ $i }}</td>
                                 <td>{{ $item ->title }}</td>
                                 <td>{{ $item ->category_id }}</td>
-                                <td>{{ $item ->price }}</td>
+                                <td>Rp. {{ $item->price }}.000</td>
                                 <td>{{ $item ->product_code }}</td>
                                 <td>{{ $item ->stock}}</td>
                                 <td>{{ $item->description }}</td>

@@ -19,110 +19,95 @@ class CheckoutController extends Controller
 
         // Hitung total harga produk
         foreach ($cartItems as $item) {
-            $subtotal = floatval(preg_replace("/[^0-9.]/", "", $item['price'])) * $item['quantity'];
-            $totalHargaProduk += $subtotal;
+            $subtotal = $item->product->price * $item->quantity;
+            $totalHargaProduk = $subtotal;
         }
 
-        // Hitung total ongkos kirim (misalnya saya menghitung 10% dari total harga produk)
+        // Total ongkos kirim (misalnya saya menghitung 10% dari total harga produk)
         $totalOngkosKirim = $totalHargaProduk * 0.1;
+
+        $grandTotal = $totalHargaProduk + $totalOngkosKirim;
 
         return view('checkout.index', compact('cartItems', 'user', 'totalHargaProduk', 'totalOngkosKirim'));
     }
 
     public function process(Request $request)
     {
-    $request->validate([
-        'address' => 'required|string',
-        'city' => 'required|string',
-        'postal_code' => 'required|string',
-    ]);
+        $user = Auth::user();
+        $address = $user->alamat;
+        $cartItems = $user->cart;
+        $totalHargaProduk = 0;
 
-    $user = Auth::user();
-    $cartItems = $user->cart;
-    $totalHargaProduk = 0;
+        // Cek stok produk dan simpan data ke dalam tabel barang keluar
+        foreach ($cartItems as $item) {
+            $product = Product::find($item->product_id);
+            if ($product && $product->stock >= $item->quantity) {
+                $harga_satuan = $product->price;
 
-    // Cek stok produk dan simpan data ke dalam tabel barang keluar
-    foreach ($cartItems as $item) {
-        $product = Product::find($item['product_id']);
-        if ($product && $product->stock >= $item['quantity']) {
-            // Ambil harga satuan dari produk
-            $harga_satuan = $product->price;
-
-            // Buat entri baru dalam tabel BarangKeluar
-            BarangKeluar::create([
-                'tanggal_keluar' => now(),
-                'kode_barang' => $product->product_code,
-                'nama_barang' => $product->title,
-                'jumlah_keluar' => $item['quantity'],
-                'jumlah_stock' => $product->stock,
-                'harga_satuan' => $harga_satuan,
-            ]);
-        } else {
-            // Jika stok tidak mencukupi, kembalikan dengan pesan kesalahan
-            return redirect()->back()->with('error', 'Stok produk tidak mencukupi untuk ' . $product->title);
+                // Buat data baru untuk tabel BarangKeluar
+                BarangKeluar::create([
+                    'tanggal_keluar' => now(),
+                    'kode_barang' => $product->product_code,
+                    'nama_barang' => $product->title,
+                    'jumlah_keluar' => $item->quantity,
+                    'jumlah_stock' => $product->stock,
+                    'harga_satuan' => $harga_satuan,
+                ]);
+            } else {
+                // Jika stok tidak mencukupi
+                return redirect()->back()->with('error', 'Stok produk tidak mencukupi untuk ' . $product->title);
+            }
         }
-    }
 
-    // Hitung total harga produk
-    foreach ($cartItems as $item) {
-        $subtotal = floatval(preg_replace("/[^0-9.]/", "", $item['price'])) * $item['quantity'];
-        $totalHargaProduk += $subtotal;
-    }
-
-    // Hitung total ongkos kirim (misalnya saya menghitung 10% dari total harga produk)
-    $totalOngkosKirim = $totalHargaProduk * 0.1;
-
-    // Hitung grand total
-    $grandtotal = $totalHargaProduk + $totalOngkosKirim;
-
-    // Simpan grand total dalam sesi
-    session()->put('grandtotal', $grandtotal);
-
-    // Buat transaksi baru untuk setiap item di keranjang
-    foreach ($cartItems as $item) {
-        $product = Product::find($item['product_id']);
-        if ($product) {
-            // Hitung total price dari setiap pesanan sebagai jumlah dari totalHargaProduk dan totalOngkosKirim
-            $total_price = $totalHargaProduk + $totalOngkosKirim;
-
-            Transaction::create([
-                'user_id' => $user->id,
-                'address' => $request->input('address'),
-                'city' => $request->input('city'),
-                'postal_code' => $request->input('postal_code'),
-                'total_price' => $total_price,
-                'product_code' => $product->product_code,
-                'product_name' => $product->title,
-            ]);
-
-            // Buat pesanan baru
-            $order = new Order();
-            $order->address = $request->input('address');
-            $order->city = $request->input('city');
-            $order->postal_code = $request->input('postal_code');
-            $order->user_id = $user->id;
-            $order->product_id = $item->product_id;
-            $order->product_name = $product->title;
-            $order->quantity = $item->quantity;
-            $order->total_price = $total_price; // Menggunakan total_price yang sudah dihitung
-            $order->status = 'belum dibayar';
-
-            // Simpan pesanan ke database
-            $order->save();
-
-            // Kurangi stok produk
-            $product->stock -= $item['quantity'];
-            $product->save();
+        // Hitung total harga produk
+        foreach ($cartItems as $item) {
+            $subtotal = $item->product->price * $item->quantity;
+            $totalHargaProduk = $subtotal;
         }
+
+        // Hitung total ongkos kirim (misalnya saya menghitung 10% dari total harga produk)
+        $totalOngkosKirim = $totalHargaProduk * 0.1;
+
+        // Hitung grand total
+        $grandTotal = $totalHargaProduk + $totalOngkosKirim;
+
+
+        // Buat transaksi baru dari setiap item di keranjang
+        foreach ($cartItems as $item) {
+            $product = Product::find($item->product_id);
+            if ($product) {
+                // Hitung total price = total harga produk + ongkos kirim
+                $grandTotal= $totalHargaProduk + $totalOngkosKirim;
+
+                Transaction::create([
+                    'user_id' => $user->id,
+                    'address' => $address,
+                    'total_price' => $grandTotal,
+                    'product_code' => $product->product_code,
+                    'product_name' => $product->title,
+                ]);
+
+                // Buat pesanan baru
+                $order = new Order();
+                $order->address = $address;
+                $order->user_id = $user->id;
+                $order->product_id = $item->product_id;
+                $order->product_name = $product->title;
+                $order->quantity = $item->quantity;
+                $order->total_price = $grandTotal; 
+                $order->status = 'belum dibayar';
+                
+                $order->save();
+
+                // Kurangi stok produk
+                $product->stock -= $item->quantity;
+                $product->save();
+            }
+        }
+
+        // Hapus keranjang setelah transaksi
+        $user->cart()->delete();
+
+        return redirect()->route('pesanan.index')->with('success', 'Pesanan Anda Telah Berhasil Dibuat');
     }
-
-    // Hapus keranjang setelah transaksi
-    $user->cart()->delete();
-
-    return redirect()->route('pesanan.index')->with('success', 'Pesanan Anda Telah Berhasil Dibuat');
-    }
-
-
-
 }
-

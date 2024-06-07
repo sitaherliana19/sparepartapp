@@ -24,11 +24,6 @@
             </thead>
             <tbody>
                 @foreach ($cartItems as $index => $item)
-                @php
-                    $quantity = intval($item->quantity); // Mengonversi ke integer
-                    $price = floatval($item->product->price); // Mengonversi ke float
-                    $total = $quantity * $price;
-                @endphp
                 <tr id="product_{{ $item->product->id }}" class="cart_item">
                     <td class="cart_product">
                         @if ($item->product->image)
@@ -44,11 +39,11 @@
                         <small class="cart_ref">Kode Produk : {{ $item->product->product_code }}</small>
                     </td>
                     <td class="cart_unit" data-title="Harga Satuan">
-                        <span class="price">{{ $item->product->price}}</span>
+                        <span class="price">Rp. {{$item->product->price}}.000</span>
                     </td>
                     <td class="cart_quantity" data-title="Jumlah">
                         <div class="input-group">
-                            <input type="number" name="quantity[]" value="{{ $quantity }}" min="0" class="form-control quantity-input" data-index="{{ $index }}" data-product-id="{{ $item->product->id }}">
+                            <input type="number" name="quantity[]" value="{{ $item->quantity }}" min="0" class="form-control quantity-input" data-index="{{ $index }}" data-product-id="{{ $item->product->id }}">
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-outline-secondary quantity-button" data-action="minus">-</button>
                             </div>
@@ -58,22 +53,13 @@
                         </div>
                     </td>
                     <td class="price" id="total_price_container">
-                        @php
-                        // Menghilangkan karakter non-angka dari harga produk
-                        $cleanPrice = preg_replace("/[^0-9]/", "", $item->product->price);
-                        // Konversi harga yang telah dibersihkan menjadi tipe data float
-                        $price = floatval($cleanPrice);
-                        // Mengalikan dengan quantity untuk mendapatkan subtotal
-                        $subtotal = $price * $item->quantity;
-                        @endphp
-                        {{ 'Rp. ' . number_format($subtotal, 0, ',', '.') }}
+                        Rp. {{ $item->quantity * $item->product->price}}.000
                     </td>
                     <td class="cart_delete text-center" data-title="Hapus">
                         <a href="{{ route('cart.remove', $item->product->id) }}" class="cart_quantity_delete"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
-            @endforeach
-            
+                @endforeach
             </tbody>
         </table>
         <div class="row">
@@ -84,24 +70,9 @@
                             <tr class="cart_total_price">
                                 <td class="text-right">Total Harga Produk</td>
                                 <td class="price notranslate" id="total_product">
-                                    @php
-                                    $totalHargaProduk = 0;
-                                    foreach($cartItems as $item) {
-                                        // Menghilangkan karakter non-angka dari harga produk
-                                        $cleanPrice = preg_replace("/[^0-9]/", "", $item->product->price);
-                                        // Konversi harga yang telah dibersihkan menjadi tipe data float
-                                        $price = floatval($cleanPrice);
-                                        // Mengalikan dengan quantity untuk mendapatkan subtotal
-                                        $subtotal = $price * $item->quantity;
-                                        $totalHargaProduk += $subtotal;
-                                    }
-                                    // Ubah format ke integer tanpa desimal
-                                    $totalHargaProduk = intval($totalHargaProduk);
-                                    // Tampilkan total harga produk dalam format Rupiah
-                                    echo 'Rp. ' . number_format($totalHargaProduk, 0, ',', '.');
-                                    @endphp
+                                    Rp. {{ $cartItems->sum('quantity') * $cartItems->avg('product.price')}}.000
                                 </td>
-                            </tr>                   
+                            </tr>                  
                         </tbody>
                     </table>
                     <div class="text-right mt-3">

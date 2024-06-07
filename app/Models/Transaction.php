@@ -10,8 +10,6 @@ class Transaction extends Model
     protected $fillable = [
         'user_id',
         'address',
-        'city',
-        'postal_code',
         'total_price',
         'product_code',
         'product_name',
@@ -26,5 +24,11 @@ class Transaction extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function orders()
+    {
+    return $this->hasMany(Order::class);
+    }
+
     
 }

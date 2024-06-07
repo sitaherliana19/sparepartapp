@@ -44,7 +44,7 @@
             <div class="col-md-6 offset-md-1">
                 <div class="product-details">
                     <h2>{{ $product->title }}</h2>
-                    <p>Harga: {{ $product->price }}</p>
+                    <p>Harga: Rp.{{ number_format($product->price, 0, ',', '.') }}.000</p>
                     <p>Stok: {{ $product->stock }}</p>
                     <p>Deskripsi: {{ $product->description }}</p>
 
@@ -87,6 +87,7 @@
             const decrementButton = document.getElementById('decrement');
             const incrementButton = document.getElementById('increment');
             const quantityInput = document.getElementById('quantity');
+            const addButton = document.querySelector('button[type="submit"]');
 
             decrementButton.addEventListener('click', function() {
                 let currentValue = parseInt(quantityInput.value);
@@ -101,6 +102,19 @@
                     quantityInput.value = currentValue + 1;
                 }
             });
+
+            // Disable tambah keranjang jika stok 0
+            if (parseInt(quantityInput.max) === 0) {
+                addButton.disabled = true;
+            }
+
+            // Perbarui status button tambah keranjang saat mengubah stok
+            quantityInput.addEventListener('input', function() {
+                if (parseInt(this.value) > 0) {
+                    addButton.disabled = false;
+                } else {
+                    addButton.disabled = true;
+                }
+            });
         });
     </script>
-

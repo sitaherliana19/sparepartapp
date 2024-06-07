@@ -17,15 +17,15 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">{{ $product->title}}</h5>
                             <hr> <!-- Garis pemisah -->
-                            <p class="card-text">{{ $product->price }}</p>
+                            <p class="card-text">Rp. {{ $product->price }}.000</p>
                         </div>
                     </div>
                 </a>
             </div>
             @endforeach
 
-            </div>
         </div>
+    </div>
     </section>
     {{--  AKhir  --}}
 

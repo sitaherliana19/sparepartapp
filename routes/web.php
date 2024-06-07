@@ -54,10 +54,8 @@ Route::get('/lupa_sandi', function () {
 });
 
 
-Route::get('/contact', function () {
-    return view('contact', [
-        "title" => "contact"
-    ]);
+Route::get('/carabeli', function () {
+    return view('cara_beli', );
 });
 
 

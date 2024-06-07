@@ -28,9 +28,9 @@
         <tbody>
             @foreach ($cartItems as $index => $item)
             @php
-                $quantity = intval($item->quantity); // Mengonversi ke integer
-                $price = floatval($item->product->price); // Mengonversi ke float
-                $subtotaltotal = $quantity * $price;
+            $quantity = $item->quantity; 
+            $subtotal = $item->product->price * $quantity;
+            $totalHargaProduk = $subtotal;
             @endphp
             <tr id="product_{{ $item->product->id }}" class="cart_item">
                 <td class="cart_product" style="text-align: center;">
@@ -43,22 +43,14 @@
                     <small class="cart_ref">Kode Produk : {{ $item->product->product_code }}</small>
                 </td>
                 <td class="cart_unit" data-title="Harga Satuan">
-                    <span class="price">{{ $item->product->price}}</span>
+                    <span class="price">Rp. {{$item->product->price}}.000</span>
                 </td>
                 <td class="cart_quantity" data-title="Jumlah">
                     <span>{{ $quantity }}</span>
                 </td>
                 <td class="cart_total item" id="total_price_container" data-title="Total">
-                    @php
-                    // Menghilangkan karakter non-angka dari harga produk
-                    $cleanPrice = preg_replace("/[^0-9]/", "", $item->product->price);
-                    // Konversi harga yang telah dibersihkan menjadi tipe data float
-                    $price = floatval($cleanPrice);
-                    // Mengalikan dengan quantity untuk mendapatkan subtotal
-                    $subtotal = $price * $item->quantity;
-                    @endphp
-                    {{ 'Rp. ' . number_format($subtotal, 0, ',', '.') }}
-                </td>
+                    Rp. {{ $subtotal }}.000
+                </td>                
             </tr>
             @endforeach
         </tbody>
@@ -69,26 +61,23 @@
             <div class="totaltable">
                 <table class="table notranslate">
                     <tbody>
-                                @php
-                                $totalHargaProduk = 0;
-                                foreach($cartItems as $item) {
-                                    $subtotal = $price * $item->quantity;
-                                    $totalHargaProduk += $subtotal;
-                                }
-                                $totalOngkosKirim = $totalHargaProduk * 0.1;
-                                $grandtotal = $totalHargaProduk + $totalOngkosKirim;
-                                @endphp
-                        <td class="text-right">Total Harga Produk</td>
+                        <tr class="cart_total_price">
+                            <td class="text-right">Total Harga Produk</td>
                             <td class="price notranslate" id="total_product">
-                                {{ 'Rp. ' . number_format($totalHargaProduk, 0, ',', '.') }}
-                        </td>
+                                Rp. {{$totalHargaProduk}}.000
+                            </td>
+                        </tr>
+                        @php
+                            $totalOngkosKirim = $totalHargaProduk * 0.1;
+                            $grandtotal = $totalHargaProduk + $totalOngkosKirim;
+                        @endphp
                         <tr class="cart_total_price">
                             <td class="text-right">Total Ongkos Kirim</td>
-                            <td class="price text-right" id="total_shipping">{{ 'Rp. ' . number_format($totalOngkosKirim, 0, ',', '.') }}</td>
+                            <td class="price text-right" id="total_shipping">Rp. {{ $totalOngkosKirim}}00</td>
                         </tr>
                         <tr class="cart_total_price">
                             <td class="total_price_container text-right"><span>SubTotal</span></td>
-                            <td class="price text-right" id="total_price_container">{{ 'Rp. ' . number_format($grandtotal, 0, ',', '.') }}</td>
+                            <td class="price text-right" id="total_price_container">Rp. {{ ($grandtotal)}}00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -100,20 +89,13 @@
         @csrf
         <div class="form-group">
             <label for="address">Alamat:</label>
-            <textarea name="address" id="address" class="form-control" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="city">Kota:</label>
-            <input type="text" name="city" id="city" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="postal_code">Kode Pos:</label>
-            <input type="text" name="postal_code" id="postal_code" class="form-control" required>
+            <div class="box-info-produk" style="background-color: #f7f7f7; border: 2px solid #b0afaf; padding: 15px;" readonly>{{ $user->alamat}}</div>
+            <input type="hidden" name="address" value="{{ $user->alamat}}">
         </div>
         <div class="form-group">
             <img src="{{ asset('path/to/qris_image.png') }}" alt="QRIS Image" width="200">
         </div>
-        <button type="submit" class="btn btn-primary">Bayar</button>          
+        <button type="submit" class="btn btn-primary">Bayar</button>
     </form>
 </div>
 @endsection

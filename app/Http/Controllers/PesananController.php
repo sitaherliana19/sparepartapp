@@ -12,13 +12,13 @@ class PesananController extends Controller
     public function index()
     {
     
-        // Ambil data pesanan terkait dengan pengguna yang sedang login
+        // Ambil data pesanan dari pengguna yang sedang login
         $user = Auth::user();
-        $orders = Order::where('user_id', auth()->user()->id)->get();
+        $orders = Order::with(['product', 'transaction'])->where('user_id', $user->id)->get();
 
 
         // Kirim data pesanan ke view
-        return view('pesanan.index', compact('orders'));
+        return view('pesanan.index', compact('orders', 'user'));
     
     }
 }

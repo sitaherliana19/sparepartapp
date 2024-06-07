@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriProduk;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -16,6 +17,7 @@ class ProductController extends Controller
     {
         $katakunci = $request->katakunci;
         $pr = Product::get();
+        $kp = KategoriProduk::get();
         $jumlahbaris =5;
         if(strlen($katakunci)){
             $data = product::where('product_code', 'like','%'.$katakunci.'%')
@@ -24,7 +26,7 @@ class ProductController extends Controller
         }else{
             $data = product::orderBy('id', 'desc')->paginate($jumlahbaris);
         }
-        return view ('products.index', compact(['data', 'pr']));
+        return view ('products.index', compact(['data', 'pr', 'kp']));
 
     }
 
