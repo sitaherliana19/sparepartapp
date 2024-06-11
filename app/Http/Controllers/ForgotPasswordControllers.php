@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -27,9 +27,9 @@ class ForgotPasswordControllers extends Controller
         }
 
         // Tentukan broker berdasarkan peran pengguna
-        $broker = $user->role === 'admin' ? 'admins' : 'users';
+        // $broker = $user->role === 'admin' ? 'admins' : 'users';
 
-        $status = Password::broker($broker)->sendResetLink(
+        $status = Password::sendResetLink(
             $request->only('email')
         );
 

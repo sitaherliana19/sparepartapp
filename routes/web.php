@@ -1,21 +1,21 @@
 <?php
 
-use App\Http\Controllers\BarangKeluarController;
-use App\Http\Controllers\KategoriProdukController;
 use App\Models\Product;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\loginController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\BarangMasukController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\DataPelangganController;
-use App\Http\Controllers\InventoryReportController;
-use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\loginController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PesananController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\DataPelangganController;
+use App\Http\Controllers\KategoriProdukController;
+use App\Http\Controllers\InventoryReportController;
+use App\Http\Controllers\ResetPasswordControllers;
+use App\Http\Controllers\ForgotPasswordControllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,10 +89,10 @@ Route::get('/logoutuser', [LoginController::class, 'logoutuser'])->name('logoutu
 Route::get('/registeruser', [LoginController::class, 'registeruser'])->name('registeruser');
 Route::post('/register-prosesuser', [LoginController::class, 'register_prosesuser'])->name('register-prosesuser');
 
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+Route::get('password/reset', [ForgotPasswordControllers::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordControllers::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordControllers::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordControllers::class, 'reset'])->name('password.update');
 
 
 Route::get('/barang_masuk', [BarangMasukController::class, 'index'])->name('barang_masuk.index');
