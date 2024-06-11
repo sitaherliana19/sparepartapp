@@ -89,7 +89,7 @@ class CheckoutController extends Controller
 
                 // Buat pesanan baru
                 $order = new Order();
-                $order->address = $address;
+                $order->shipping_address = $address;
                 $order->user_id = $user->id;
                 $order->product_id = $item->product_id;
                 $order->product_name = $product->title;
