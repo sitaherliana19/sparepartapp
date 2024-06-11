@@ -32,33 +32,47 @@ class BarangMasukController extends Controller
             'jumlah_masuk' => 'required|integer',
             'harga_satuan' => 'required',
         ]);
+
+        // Periksa apakah produk sudah ada
+        $product = Product::where('product_code', $request->kode_barang)->first();
+
+        // dd("stoknya :".$product->stock);
+
+        if ($product) {
+            // Jika stok produk 0, update stok dengan jumlah masuk baru
+            if ($product->stock == 0) {
+                //simpan nilai stok saat ini untuk diinputkan ke tabel barang_masuks
+                $stoksekarang = $request->jumlah_masuk;
+                $product->update([
+                    'stock' => $stoksekarang
+                ]);
+                
+                
+            } else {
+                // Jika stok produk tidak 0, tambahkan stok yang sudah ada dengan stok masuk baru
+                $stoksekarang = $product->stock + $request->jumlah_masuk;
+                // dd($stoksekarang);
+                $product->update([
+                    'stock' => $stoksekarang,
+                ]);
+                
+            }
+        }
     
         $data = [
             'tanggal_masuk' => $request->tanggal_masuk,
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
             'jumlah_masuk' => $request->jumlah_masuk,
+            'jumlah_stock' => $stoksekarang,
             'harga_satuan' => $request->harga_satuan,
         ];
+
+        // dd($data);
         // Proses penyimpanan data baru
         BarangMasuk::create($data);
         
-        // Periksa apakah produk sudah ada
-        $product = Product::where('product_code', $request->kode_barang)->first();
-
-        if ($product) {
-            // Jika stok produk 0, update stok dengan jumlah masuk baru
-            if ($product->stok == 0) {
-                $product->update([
-                    'stok' => $request->jumlah_masuk,
-                ]);
-            } else {
-                // Jika stok produk tidak 0, tambahkan stok yang sudah ada dengan stok masuk baru
-                $product->update([
-                    'stok' => $product->stok + $request->jumlah_masuk,
-                ]);
-            }
-        }
+        
     
         // Redirect ke halaman utama dengan pesan sukses
         return redirect()->route('barang_masuk.index')->with('success', 'Data Barang Masuk berhasil ditambahkan');
