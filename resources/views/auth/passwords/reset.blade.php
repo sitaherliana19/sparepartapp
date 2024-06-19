@@ -19,7 +19,6 @@
                 @enderror
                 <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                     <div class="mb-4 text-sm text-gray-600">Reset Kata Sandi</div>
-                    <!-- Validation Errors -->
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -32,9 +31,9 @@
                             <label class="block font-medium text-sm text-gray-700" for="password">Password</label>
                             <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="password" type="password" name="password" required>
                         </div>
-                        <!-- Confirm Password -->
+                        <!-- Konfir Password -->
                         <div class="mt-4">
-                            <label class="block font-medium text-sm text-gray-700" for="password_confirmation">Confirm Password</label>
+                            <label class="block font-medium text-sm text-gray-700" for="password_confirmation">Konfirmasi Password</label>
                             <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="password_confirmation" type="password" name="password_confirmation" required>
                         </div>
                         <div class="flex items-center justify-end mt-4">

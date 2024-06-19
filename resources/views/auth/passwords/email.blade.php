@@ -16,10 +16,8 @@
             <div class="alert alert-danger offset-md-3 w-full sm:max-w-md">
                 <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                     <div class="mb-4 text-sm text-gray-600">Lupa Kata Sandi? Masukkan alamat email Anda untuk menyetel ulang kata sandi</div>
-                    <!-- Session Status -->
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
-                        <!-- Email Address -->
                         <div>
                             <label class="block font-medium text-sm text-gray-700" for="email">Email</label>
                             <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="email" type="email" name="email" required="required" autofocus="autofocus">

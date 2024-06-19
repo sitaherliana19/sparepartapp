@@ -49,15 +49,13 @@
                     <input type="text" class="form-control" name='harga_satuan'  value= "{{ Session::get ('harga_satuan')}}"  id="harga_satuan">
                 </div>
             </div>
-            <!-- Add other form inputs here -->
-            
             <div class="mb-3 row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-secondary" onclick="window.history.back()">KEMBALI</button>
                 </div>
                 <div class="col-sm-1">
-                    <button type="submit" class="btn btn-primary" name="submit">SIMPAN</button>
+                    <button type="submit" class="btn btn-light" style="background-color: #804343; color: white;" name="submit">SIMPAN</button>
                 </div>
             </div>
         </form>

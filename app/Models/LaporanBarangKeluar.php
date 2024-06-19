@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InventoryReport extends Model
+class LaporanBarangKeluar extends Model
 {
     use HasFactory;
-
+    protected $table = 'laporan_barang_keluar';
     protected $fillable = [
         'id',
-        'tanggal',
+        'nama',
+        'tanggal_keluar',
+        'kode_barang',
         'nama_barang',
-        'harga',
-        'total_barang',
-        'total_harga'
-        
+        'stock_keluar',
+        'total_belanja'
     ];
-    protected $table = 'inventory_reports';
+
     public $timestamps = false;
 }

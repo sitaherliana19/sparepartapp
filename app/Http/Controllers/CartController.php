@@ -15,6 +15,7 @@ class CartController extends Controller
         $this->middleware('auth');
     }
 
+
     public function add(Request $request)
     {
         // Validasi request
@@ -42,6 +43,7 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully.');
     }
 
+
     public function index()
     {
         // Ambil semua item keranjang untuk pengguna yang sedang login
@@ -56,6 +58,7 @@ class CartController extends Controller
         return view('cart.index', compact('cartItems'));
     }
 
+    
     public function update(Request $request)
     {
         // Validasi input

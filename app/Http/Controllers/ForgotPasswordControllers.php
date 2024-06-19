@@ -26,9 +26,6 @@ class ForgotPasswordControllers extends Controller
             return back()->withErrors(['email' => 'Email tidak ditemukan.']);
         }
 
-        // Tentukan broker berdasarkan peran pengguna
-        // $broker = $user->role === 'admin' ? 'admins' : 'users';
-
         $status = Password::sendResetLink(
             $request->only('email')
         );

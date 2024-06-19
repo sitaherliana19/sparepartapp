@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\BarangKeluar;
+use App\Models\DetailTransaksi;
+use App\Models\LaporanBarangKeluar;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Transaction;
 use App\Models\Product;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Midtrans\Snap;
 
 class CheckoutController extends Controller
 {
@@ -16,17 +21,14 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $cartItems = $user->cart;
         $totalHargaProduk = 0;
-
-        // Hitung total harga produk
         foreach ($cartItems as $item) {
-            $subtotal = $item->product->price * $item->quantity;
-            $totalHargaProduk = $subtotal;
+            $subtotal = $item->quantity * $item->product->price;
+            $totalHargaProduk += $subtotal;
         }
-
-        // Total ongkos kirim (misalnya saya menghitung 10% dari total harga produk)
+        // Menghitung total ongkos kirim sebagai 10% dari total harga produk
         $totalOngkosKirim = $totalHargaProduk * 0.1;
-
-        $grandTotal = $totalHargaProduk + $totalOngkosKirim;
+        // Menghitung grand total
+        $grandtotal = $totalHargaProduk + $totalOngkosKirim;
 
         return view('checkout.index', compact('cartItems', 'user', 'totalHargaProduk', 'totalOngkosKirim'));
     }
@@ -53,61 +55,111 @@ class CheckoutController extends Controller
                     'jumlah_stock' => $product->stock,
                     'harga_satuan' => $harga_satuan,
                 ]);
+                
             } else {
                 // Jika stok tidak mencukupi
                 return redirect()->back()->with('error', 'Stok produk tidak mencukupi untuk ' . $product->title);
             }
         }
 
-        // Hitung total harga produk
+        // Menghitung total harga produk
+        $totalHargaProduk = 0;
         foreach ($cartItems as $item) {
-            $subtotal = $item->product->price * $item->quantity;
-            $totalHargaProduk = $subtotal;
+            $subtotal = $item->quantity * $item->product->price;
+            $totalHargaProduk += $subtotal;
         }
-
-        // Hitung total ongkos kirim (misalnya saya menghitung 10% dari total harga produk)
+        // Menghitung total ongkos kirim sebagai 10% dari total harga produk
         $totalOngkosKirim = $totalHargaProduk * 0.1;
+        // Menghitung grand total
+        $grandtotal = $totalHargaProduk + $totalOngkosKirim;
 
-        // Hitung grand total
-        $grandTotal = $totalHargaProduk + $totalOngkosKirim;
+        $Notransaksi = 'BA-' . strtoupper(uniqid());
 
+        // Membuat transaksi
+        $transaksi = Transaksi::create([
+            'no_transaksi' => $Notransaksi,
+            'nama' => $user->name,
+            'tgl_transaksi' => now(),
+            'alamat' => $address,
+            'jumlah' => $cartItems->sum('quantity'), 
+            'nama_produk' => $product->title,
+            'total' => $grandtotal,
+            'snap_token' => null,
+        ]);
+        
+        $items_details = [];
+        $itemId = 1;
+       
 
-        // Buat transaksi baru dari setiap item di keranjang
         foreach ($cartItems as $item) {
             $product = Product::find($item->product_id);
             if ($product) {
-                // Hitung total price = total harga produk + ongkos kirim
-                $grandTotal= $totalHargaProduk + $totalOngkosKirim;
-
-                Transaction::create([
-                    'user_id' => $user->id,
-                    'address' => $address,
-                    'total_price' => $grandTotal,
-                    'product_code' => $product->product_code,
-                    'product_name' => $product->title,
+                $detailTransaksi = DetailTransaksi::create([
+                    'id_transaksi' => $transaksi->id,
+                    'no_transaksi' => $Notransaksi,
+                    'nama' => $user->name,
+                    'alamat' => $address,
+                    'nama_produk' => $product->title,
+                    'jumlah' => $item->quantity,
+                    'tracking_number' => null,
+                    'total' => $grandtotal,
+                    'status' => 'Pesanan Diterima',
                 ]);
 
-                // Buat pesanan baru
-                $order = new Order();
-                $order->address = $address;
-                $order->user_id = $user->id;
-                $order->product_id = $item->product_id;
-                $order->product_name = $product->title;
-                $order->quantity = $item->quantity;
-                $order->total_price = $grandTotal; 
-                $order->status = 'belum dibayar';
-                
-                $order->save();
-
+                LaporanBarangKeluar::create([
+                    'nama' => $user->name,
+                    'tanggal_keluar' => now(),
+                    'kode_barang' => $product->product_code,
+                    'nama_barang' => $product->title,
+                    'stock_keluar' => $item->quantity,
+                    'total_belanja' => $grandtotal,
+                ]);
+        
                 // Kurangi stok produk
                 $product->stock -= $item->quantity;
                 $product->save();
+
+                $items_details[] = [
+                    'id' => $itemId++,
+                    'price' => $product->price,
+                    'quantity' => $item->quantity,
+                    'name' => $product->title,
+                ];
             }
         }
 
         // Hapus keranjang setelah transaksi
         $user->cart()->delete();
+        
 
-        return redirect()->route('pesanan.index')->with('success', 'Pesanan Anda Telah Berhasil Dibuat');
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-qdoyJDt-Lm8v9SfTUfJSsH_1';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $Notransaksi,
+                'gross_amount' => 1000,
+            ],
+            'customer_details' => [
+                'first_name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->nomor_handphone,
+            ],
+            'item_details' => $items_details,
+        ];
+
+        $snapToken = Snap::getSnapToken($params);
+
+        $transaksi->snap_token = $snapToken;
+        $transaksi->save(); 
+
+        return view('checkout.pay', compact('snapToken', 'transaksi', 'cartItems'));
+
     }
 }

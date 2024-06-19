@@ -9,8 +9,6 @@
           Sparepart motor dapat beragam, mulai dari komponen kecil seperti sekrup dan mur, hingga komponen besar seperti mesin, transmisi, atau rangka.</p>
         <a class="btn btn-light btn-md" href="/produk" role="button" whidth>Selengkapnya >></a>
     </section>
-    {{-- Akhir Jumbotron --}}
-
     
     <section id="search">
         <div class="search-ppdb">
@@ -28,8 +26,6 @@
             </div>
         </div>
     </section>
-    
-    {{-- Footer --}}
     <footer class="sticky-footer p-3" id="footer">
         <div class="container">
             <div class="text-center text-white">
@@ -38,7 +34,6 @@
             </div>
         </div>
     </footer>
-    {{-- Akhir Footer --}}
 
     {{-- Scroll Up --}}
     <a href="#" class="ignielToTop"></a>

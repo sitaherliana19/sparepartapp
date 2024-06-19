@@ -16,9 +16,8 @@ class DataPelangganController extends Controller
         $jumlahbaris = 5;
 
         if (strlen($katakunci)) {
-            $data = DataPelanggan::where('nama_pelanggan', 'like', '%'.$katakunci.'%')
-                ->orWhere('nama_pelanggan', 'like', '%'.$katakunci.'%')
-                ->paginate($jumlahbaris);        
+            $data = DataPelanggan::where('nama', 'like', '%'.$katakunci.'%')
+                ->paginate($jumlahbaris);
         } else {
             $data = DataPelanggan::orderBy('id', 'desc')->paginate($jumlahbaris);
         }
@@ -31,7 +30,7 @@ class DataPelangganController extends Controller
      */
     public function create()
     {
-        return view('data_pelanggan.create');
+        //
     }
 
     /**
@@ -39,6 +38,12 @@ class DataPelangganController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'alamat' => 'required|string|max:255',
+            'no_handphone' => 'required|string|max:15',
+        ]);
 
         $data = [
             'nama' => $request->nama,
@@ -52,28 +57,15 @@ class DataPelangganController extends Controller
         return redirect()->route('data_pelanggan.index')->with('success', 'Data Pelanggan Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $data = DataPelanggan::find($id); 
-        return view('data_pelanggan.edit')->with('data', $data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'alamat' => 'required|string|max:255',
+            'no_handphone' => 'required|string|max:15',
+        ]);
 
         $data = [
             'nama' => $request->nama,
@@ -82,7 +74,7 @@ class DataPelangganController extends Controller
             'no_handphone' => $request->no_handphone,
         ];
 
-        DataPelanggan::where('id', $id)->update($data); 
+        DataPelanggan::where('id', $id)->update($data);
 
         return redirect()->route('data_pelanggan.index')->with('success', 'Berhasil melakukan update data');
     }
@@ -92,7 +84,7 @@ class DataPelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        DataPelanggan::destroy($id); 
+        DataPelanggan::destroy($id);
 
         return redirect()->route('data_pelanggan.index')->with('success', 'Berhasil menghapus data');
     }

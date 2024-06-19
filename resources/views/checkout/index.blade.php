@@ -61,25 +61,35 @@
             <div class="totaltable">
                 <table class="table notranslate">
                     <tbody>
+                        @php
+                            // Menghitung total harga produk
+                            $totalHargaProduk = 0;
+                            foreach ($cartItems as $item) {
+                                $subtotal = $item->quantity * $item->product->price;
+                                $totalHargaProduk += $subtotal;
+                            }
+                            // Menghitung total ongkos kirim sebagai 10% dari total harga produk
+                            $totalOngkosKirim = $totalHargaProduk * 0.1;
+                            // Menghitung grand total
+                            $grandtotal = $totalHargaProduk + $totalOngkosKirim;
+                        @endphp
+                    
                         <tr class="cart_total_price">
                             <td class="text-right">Total Harga Produk</td>
                             <td class="price notranslate" id="total_product">
-                                Rp. {{$totalHargaProduk}}.000
+                                Rp. {{ ($totalHargaProduk) }}.000
                             </td>
                         </tr>
-                        @php
-                            $totalOngkosKirim = $totalHargaProduk * 0.1;
-                            $grandtotal = $totalHargaProduk + $totalOngkosKirim;
-                        @endphp
                         <tr class="cart_total_price">
                             <td class="text-right">Total Ongkos Kirim</td>
-                            <td class="price text-right" id="total_shipping">Rp. {{ $totalOngkosKirim}}00</td>
+                            <td class="price text-right" id="total_shipping">Rp. {{($totalOngkosKirim) }}00</td>
                         </tr>
                         <tr class="cart_total_price">
                             <td class="total_price_container text-right"><span>SubTotal</span></td>
-                            <td class="price text-right" id="total_price_container">Rp. {{ ($grandtotal)}}00</td>
+                            <td class="price text-right" id="total_price_container">Rp. {{ ($grandtotal) }}00</td>
                         </tr>
                     </tbody>
+                    
                 </table>
             </div>
         </div>
@@ -92,11 +102,14 @@
             <div class="box-info-produk" style="background-color: #f7f7f7; border: 2px solid #b0afaf; padding: 15px;" readonly>{{ $user->alamat}}</div>
             <input type="hidden" name="address" value="{{ $user->alamat}}">
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <img src="{{ asset('path/to/qris_image.png') }}" alt="QRIS Image" width="200">
-        </div>
-        <button type="submit" class="btn btn-primary">Bayar</button>
+        </div> --}}
+        <button type="submit" class="btn btn-light mt-2" style="background-color: #804343; color: white;">Bayar</button>
     </form>
 </div>
 @endsection
+
+
+
 

@@ -19,17 +19,18 @@
         <div class="col-md-12">
             <div class="my-2 p-3 bg-body rounded shadow-sm offset-md-2">
                 <div class="pb-3">
-                    <a href='{{ url('barang_masuk/create') }}' class="btn btn-primary">+ Tambah Data Barang Masuk</a>
+                    <a href='{{ url('barang_masuk/create') }}' class="btn btn-light" style="background-color: #804343; color: white;">+ Tambah Data Barang Masuk</a>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" style="text-align: center;">
                         <thead>
                             <tr>
-                                <th class="col-md-1">Id</th>
+                                <th class="col-md-1">No</th>
                                 <th class="col-md-2">Tanggal Masuk</th>
                                 <th class="col-md-2">Kode Barang</th>
                                 <th class="col-md-2">Nama Barang</th>
-                                <th class="col-md-2">Stock Masuk</th>
+                                <th class="col-md-1">Stok Masuk</th>
+                                <th class="col-md-1">Jumlah Stok Masuk</th>
                                 <th class="col-md-2">Harga Satuan</th>
                             </tr>
                         </thead>
@@ -44,7 +45,8 @@
                                     <td>{{ $item->kode_barang }}</td>
                                     <td>{{ $item->nama_barang}}</td>
                                     <td>{{ $item->jumlah_masuk }}</td>
-                                    <td>{{ $item->harga_satuan }}</td>
+                                    <td>{{ $item->jumlah_stock }}</td>
+                                    <td>Rp. {{ $item->harga_satuan }}</td>
                                 </tr>
                                 @php
                                     $i++;

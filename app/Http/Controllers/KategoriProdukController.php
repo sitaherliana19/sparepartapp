@@ -57,18 +57,14 @@ class KategoriProdukController extends Controller
         return redirect()->route('kategori_produk.index')->with('success', 'Data Barang Masuk berhasil ditambahkan');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
         $data = KategoriProduk::find($id); 
         return view('kategori_produk.edit')->with('data', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -87,9 +83,7 @@ class KategoriProdukController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
         KategoriProduk::destroy($id); 

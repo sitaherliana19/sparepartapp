@@ -70,10 +70,18 @@
                             <tr class="cart_total_price">
                                 <td class="text-right">Total Harga Produk</td>
                                 <td class="price notranslate" id="total_product">
-                                    Rp. {{ $cartItems->sum('quantity') * $cartItems->avg('product.price')}}.000
+                                    Rp. 
+                                    @php
+                                        $total = 0;
+                                        foreach ($cartItems as $item) {
+                                            $total += $item->quantity * $item->product->price;
+                                        }
+                                        echo ($total);
+                                    @endphp
+                                    .000
                                 </td>
                             </tr>                  
-                        </tbody>
+                        </tbody>                        
                     </table>
                     <div class="text-right mt-3">
                         <a href="{{ route('checkout.index') }}" class="btn btn-light" style="background-color: #804343; color: white;">Checkout</a>

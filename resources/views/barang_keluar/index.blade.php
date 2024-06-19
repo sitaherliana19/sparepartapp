@@ -22,10 +22,10 @@
                     <a href='{{ url('barang_keluar/create') }}' class="btn btn-primary">+ Tambah Data Barang Keluar</a>
                 </div> --}}
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" style="text-align: center;">
                         <thead>
                             <tr>
-                                <th class="col-md-1">Id</th>
+                                <th class="col-md-1">No</th>
                                 <th class="col-md-2">Tanggal Keluar</th>
                                 <th class="col-md-2">Kode Barang</th>
                                 <th class="col-md-2">Nama Barang</th>
@@ -44,7 +44,7 @@
                                     <td>{{ $item->kode_barang }}</td>
                                     <td>{{ $item->nama_barang}}</td>
                                     <td>{{ $item->jumlah_keluar }}</td>
-                                    <td>{{ $item->harga_satuan }}</td>
+                                    <td>Rp. {{ $item->harga_satuan }}.000</td>
                                 </tr>
                                 @php
                                     $i++;

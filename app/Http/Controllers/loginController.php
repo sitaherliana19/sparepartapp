@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataPelanggan;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,13 +16,13 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class loginController extends Controller
 {
-     public function index(){
-          return view('auth.login');
-     }
+    public function index()
+    {
+        return view('auth.login');
+    }
 
-     // Login 
 
-     public function login_post(Request $request){
+    public function login_post(Request $request){
         Session::flash('email', $request->email);
         $request->validate([
             'email'     => 'required',
@@ -43,25 +44,31 @@ class loginController extends Controller
             return redirect()->route('login')->withErrors('Email atau Password Anda Salah');
         }
     }
-     public function logout(){
-          Auth::logout();
-          return redirect()->route('login')->with('success','Anda berhasil logout');
-     }
 
-     public function register(){
-          return view('auth.register');
-     }
 
-     //register
-     public function register_post (Request $request){
-          Session::flash('nama', $request->nama);
-          Session::flash('email', $request->email);
-          $data1 = $request->validate([
-              'name'     => 'required',
-              'email'     => 'required',
-              'password'  => 'required',
-              'alamat'  => 'required',
-              'nomor_handphone'  => 'required',
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login')->with('success','Anda berhasil logout');
+    }
+
+     
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+   
+    public function register_post (Request $request){
+        Session::flash('nama', $request->nama);
+        Session::flash('email', $request->email);
+            $data1 = $request->validate([
+                
+                'name'     => 'required',
+                'email'     => 'required',
+                'password'  => 'required',
+                'alamat'  => 'required',
+                'nomor_handphone'  => 'required',
             ],[
                'name.required' => 'Nama wajib diisi',
                'email.required' => 'Email wajib diisi',
@@ -78,6 +85,14 @@ class loginController extends Controller
                 'nomor_handphone' => $request->nomor_handphone,
             ]);
 
+            
+            DataPelanggan::create([
+                'nama' => $request->name,
+                'email' => $request->email,
+                'alamat' => $request->alamat,
+                'no_handphone' => $request->nomor_handphone,
+            ]);
+
             if (Auth::login($user)) {
                 // Redirect ke halaman yang sesuai setelah login
                 if ($user->role == 'admin') {
@@ -91,7 +106,7 @@ class loginController extends Controller
             }
        }
 
-       public function showLinkRequestForm()
+    public function showLinkRequestForm()
     {
         return view('auth.passwords.email');
     }
@@ -120,7 +135,7 @@ class loginController extends Controller
             : back()->withErrors(['email' => __($status)]);
     }
   
-    //RESET PASS
+   
     public function showResetForm(Request $request, $token = null)
     {
         return view('auth.passwords.reset')->with(

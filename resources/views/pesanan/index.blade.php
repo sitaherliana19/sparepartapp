@@ -1,7 +1,7 @@
 @extends('layouts.main')
-@section('container')
 
-<div class="container mt-5">
+@section('container')
+<div class="container mt-3">
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -15,30 +15,34 @@
     @endif
 
     <h2 class="mb-4">Pesanan Saya</h2>
-    <div class="row">
-        @foreach ($orders as $order)
+    <div class="row" id="orders-container">
+        @foreach ($transaksis as $transaksi)
             <div class="col-md-6 mb-4">
                 <div class="card border-1 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Nomor Pesanan : {{ $order->id }}</h5>
-                        <p class="card-text"><i class="bi bi-geo-alt"></i> Alamat Pengiriman : {{ $user->name }}, {{ $user->nomor_handphone }}, {{ $order->address }}</p>
+                        <h5 class="card-title">Nomor Pesanan : {{ $transaksi->no_transaksi }}</h5>
+                        <p><strong><i class="fas fa-map-marker-alt"></i> Alamat Pengiriman :</strong> {{ $user->name }}, {{ $user->nomor_handphone }}, {{ $transaksi->alamat }}</p>
                         <hr>
                         <!-- Menampilkan detail produk -->
-                        <div class="row">
-                            <div class="col-md-4">
-                                @if ($order->product && $order->product->image)
-                                    <img src="{{ asset('storage/' . $order->product->image) }}" alt="Gambar Produk" class="img-fluid rounded" style="max-width: 100px;">
-                                @endif
+                        @foreach ($transaksi->detailTransaksi as $detailTransaksi)
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    @if ($detailTransaksi->product && $detailTransaksi->product->image)
+                                    <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+                                        <img src="{{ asset('storage/' . $detailTransaksi->product->image) }}" alt="Gambar Produk" class="img-fluid rounded" style="max-width: 100px;">
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="col-md-8">
+                                    <h6>{{ $detailTransaksi->nama_produk }}</h6>
+                                    <p><strong>QTY :</strong> {{ $detailTransaksi->jumlah }}</p>
+                                </div>
                             </div>
-                            <div class="col-md-8">
-                                <h6>{{ $order->product->title }}</h6>
-                                <p><strong>Jumlah :</strong> {{ $order->quantity }}</p>
-                                <p><strong>No. Resi :</strong> </p>
-                            </div>
-                        </div>
-                        <hr>
-                        <p class="card-text"><i class="bi bi-currency-dollar"></i> Total Pesanan : Rp. {{ $order->total_price }}00</p>
-                        <p class="card-text"><i class="bi bi-clock"></i> Status : {{ ucfirst($order->status) }}</p>
+                            <hr>
+                        @endforeach
+                        <p><strong><i class="fas fa-coins"></i> Total Pesanan :</strong> Rp. {{ $transaksi->total }}00</p>
+                        <p><strong><i class="fas fa-barcode"></i> No. Resi :</strong> <span class="order-tracking-number">{{ $detailTransaksi->tracking_number ? $detailTransaksi->tracking_number : 'Belum Tersedia' }}</span></p>
+                        <p><strong><i class="fas fa-shipping-fast"></i> Status :</strong> <span class="order-status">{{ $detailTransaksi->status }}</span></p>
                     </div>
                 </div>
             </div>

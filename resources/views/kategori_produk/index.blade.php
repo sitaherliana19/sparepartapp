@@ -3,10 +3,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-md-center"> <!-- Menengahkan konten -->
-        <div class="col-md-12"> <!-- Mengatur lebar konten -->
+    <div class="row justify-content-md-center"> 
+        <div class="col-md-12"> 
             <div class="my-3 p-3 bg-body rounded shadow-sm offset-md-2">
-                <!-- FORM PENCARIAN -->
+                <!-- PENCARIAN -->
                 <div class="pb-3">
                     <form class="d-flex" action="{{ url('kategori_produk/create') }}" 
                     method="get">
@@ -17,10 +17,10 @@
                     </form>
                 </div>
 
-                <!-- TOMBOL TAMBAH DATA -->
+                <!-- TAMBAH DATA -->
                 <div class="pb-3">
                     <a href='{{ url('kategori_produk/create') }}' 
-                    class="btn btn-primary">+ Tambah Data</a>
+                    class="btn btn-light" style="background-color: #804343; color: white;">+ Tambah Data</a>
                 </div>
 
                 <div class="table-responsive">

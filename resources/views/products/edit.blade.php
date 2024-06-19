@@ -46,7 +46,7 @@
          <div class="mb-3 row">
             <label for="stock" class="col-sm-2 col-form-label">Stok</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='stock' value= "{{ $data->stock}}" id="stock">
+                <input type="text" class="form-control" name='stock' value= "{{ $data->stock}}" id="stock" readonly>
             </div>
         </div>
          <div class="mb-3 row">
@@ -67,7 +67,7 @@
                 <button type="button" class="btn btn-secondary" onclick="window.history.back()">KEMBALI</button>
             </div>
             <div class="col-sm-1 text-end">
-                <button type="submit" class="btn btn-primary" name="submit">SIMPAN</button>
+                <button type="submit" class="btn btn-light" style="background-color: #804343; color: white;" name="submit">SIMPAN</button>
             </div>
         </div>
          

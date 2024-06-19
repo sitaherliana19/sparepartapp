@@ -3,12 +3,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-md-center"> <!-- Menengahkan konten -->
-        <div class="col-md-12"> <!-- Mengatur lebar konten -->
+    <div class="row justify-content-md-center"> 
+        <div class="col-md-12"> 
             <div class="my-3 p-3 bg-body rounded shadow-sm offset-md-2">
-                <!-- FORM PENCARIAN -->
                 <div class="pb-3">
-                    <form class="d-flex" action="{{ url('data_pelanggan/create') }}" 
+                    <form class="d-flex" action="{{ url('data_pelanggan') }}" 
                     method="get">
                         <input class="form-control me-1" type="search" name="katakunci" 
                         value="{{ Request::get('katakunci') }}" placeholder="Masukkan kata kunci" 
@@ -17,17 +16,11 @@
                     </form>
                 </div>
 
-                <!-- TOMBOL TAMBAH DATA -->
-                <div class="pb-3">
-                    <a href='{{ url('data_pelanggan/create') }}' 
-                    class="btn btn-primary">+ Tambah Data</a>
-                </div>
-
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" style="text-align: center;">
                         <thead>
                             <tr>
-                                <th class="col-md-1">Id</th>
+                                <th class="col-md-1">No</th>
                                 <th class="col-md-2">Nama Pelanggan</th>
                                 <th class="col-md-1">Email</th>
                                 <th class="col-md-2">Alamat</th>
@@ -45,8 +38,6 @@
                                 <td>{{ $item ->alamat }}</td>
                                 <td>{{ $item ->no_handphone }}</td>
                                 <td>
-                                    <a href='{{ url('data_pelanggan/'.$item->id.'/edit') }}' 
-                                        class="btn btn-warning btn-sm mb-2" style="min-width: 60px;">Edit</a>
                                     <form onsubmit="return confirm('Apakah Anda yakin akan menghapus data ini?')" 
                                         class='d-inline' action="{{ url('data_pelanggan/'.$item->id) }}" method="post">
                                         @csrf

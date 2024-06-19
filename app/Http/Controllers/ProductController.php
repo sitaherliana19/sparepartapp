@@ -22,6 +22,7 @@ class ProductController extends Controller
         if(strlen($katakunci)){
             $data = product::where('product_code', 'like','%'.$katakunci.'%')
                 ->orWhere('title', 'like', '%'.$katakunci.'%')
+                ->orderBy('id', 'desc')
                 ->paginate($jumlahbaris);        
         }else{
             $data = product::orderBy('id', 'desc')->paginate($jumlahbaris);

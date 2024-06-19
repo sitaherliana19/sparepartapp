@@ -14,7 +14,7 @@
 
         <link rel="stylesheet" href="/font2/css/all.min.css">
         
-        <!-- Custom CSS -->
+        <!-- Kustom CSS -->
         <style>
             #password-visibility-toggle {
                 position: absolute;
@@ -34,18 +34,15 @@
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg ">
                 <p class="flex justify-center mb-4 font-semibold text-xl">LOGIN</p>
                 <p class="mb-4 text-m">Masukkan informasi akun anda</p>
-                
-                <!-- Session Status -->
                 <form method="post" action="{{ route('login_post')}}">
                     {{ csrf_field() }}
                     @csrf
                     
-                    <!-- Email Address -->
+                    <!-- Email -->
                     <div>
                         <label class="block font-medium text-sm text-gray-700" for="email">Email</label>
                         <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="email" type="email" name="email" required="required" autofocus="autofocus" autocomplete="username" value={{ Session::get('email') }} >
                     </div>
-                    
                     <!-- Password -->
                     <div class="mt-4 relative">
                         <label class="block font-medium text-sm text-gray-700" for="password">Password</label>

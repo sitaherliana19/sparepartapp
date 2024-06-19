@@ -15,12 +15,9 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/login/style.css">
-    
 </head>
 
 <body>
-
-    {{-- navbar-beranda --}}
     <nav class="navbar navbar-expand-lg shadow p-3 navbar-dark" style="background-color: #804343">
      <style>
           .navbar-brand img {
@@ -66,7 +63,7 @@
                         </li>
                     @endguest
                     @auth
-                        <!-- Menampilkan dropdown jika pengguna sudah login -->
+                        <!-- Menampilkan fitur jika pengguna sudah login -->
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="product">
                             <a class="nav-link" href="/pesanan-saya">
                                 <span class="nav-link-text">Pesanan Saya</span>
@@ -104,8 +101,6 @@
             </div>
         </div>
     </nav>
-    {{-- Akhir Navbar --}}
-
     <div class="">
         @yield('container')
     </div>

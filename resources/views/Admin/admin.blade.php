@@ -15,7 +15,7 @@
     <!-- FONT -->
     <link href="/login/font-bunny.css" rel="stylesheet">
 
-    <!-- Bootstrap core CSS-->
+    <!-- Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="/admin_style/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +33,6 @@
 </head>
 
 <body class="fixed-nav sticky-footer" id="page-top">
-    <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
         <style>
         .navbar-brand img {
@@ -89,9 +88,9 @@
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="pengiriman">
-                    <a class="nav-link" href="/pengiriman">
+                    <a class="nav-link" href="/data_pesanan">
                         <i class="fas fa-shipping-fast"></i> 
-                        <span class="nav-link-text">Pengiriman</span>
+                        <span class="nav-link-text">Data Pemesanan</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="laporan">
@@ -112,6 +111,7 @@
     <div class="contain">
         @yield('contain')
     </div>
+    
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

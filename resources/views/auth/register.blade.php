@@ -15,7 +15,7 @@
 
           <link rel="stylesheet" href="/font2/css/all.min.css">
 
-           <!-- Custom CSS -->
+           <!-- Kustom CSS -->
           <style>
                #password-visibility-toggle {
                position: absolute;
@@ -29,24 +29,22 @@
                     <p class="flex justify-center mb-2 font-semibold text-xl">REGISTRASI</p>
                     <p class="flex justify-center mb-4 font-semibold text-lg">Selamat Datang Di Bengkel Arilla</p>
                     <p class="mb-2 text-l">Isi formulir berikut untuk melanjutkan</p>
-                    
-                    <!-- Session Status -->
                     <form action="/registerpost" method="post">
                          @csrf
                          
-                         <!-- Name -->
+                         <!-- Input nama -->
                          <div>
                               <label class="block font-medium text-sm text-gray-700" for="name">Nama</label>
                               <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="name" type="text" name="name" required="required" autofocus="autofocus" autocomplete="name">
                          </div>
                          
-                         <!-- Email Address -->
+                         <!-- Input Email -->
                          <div class="mt-4">
                               <label class="block font-medium text-sm text-gray-700" for="email">Email</label>
                               <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="email" type="email" name="email" required="required" autocomplete="username">
                          </div>
                          
-                         <!-- Password -->
+                         <!-- Input Password -->
                          <div class="mt-4 relative">
                               <label class="block font-medium text-sm text-gray-700" for="password">Password</label>
                               <div class="flex items-center">
@@ -57,13 +55,13 @@
                               </div>
                          </div>
                          
-                         <!-- Alamat -->
+                         <!-- Input Alamat -->
                          <div class="mt-4">
                               <label class="block font-medium text-sm text-gray-700" for="alamat">Alamat</label>
                               <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="alamat" type="text" name="alamat" required="required">
                          </div>
                          
-                         <!-- Nomor Handphone -->
+                         <!--Input Nomor Handphone -->
                          <div class="mt-4">
                               <label class="block font-medium text-sm text-gray-700" for="nomor-handphone">Nomor Handphone</label>
                               <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nomor-handphone" type="tel" name="nomor_handphone" required="required">

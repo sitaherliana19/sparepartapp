@@ -49,8 +49,6 @@
                     <input type="text" class="form-control" name='harga_satuan'  value= "{{ Session::get ('harga_satuan')}}"  id="harga_satuan">
                 </div>
             </div>
-            <!-- Add other form inputs here -->
-            
             <div class="mb-3 row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">

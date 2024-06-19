@@ -41,16 +41,12 @@
         </div>
     </div>
 </section>
-
-
-    {{-- Footer --}}
-    <footer class="sticky-footer p-3" id="footer" style="margin-top: 80px;">
-        <div class="container">
-            <div class="text-center text-white">
-                <p>Copyright © 
-                </p>
-            </div>
+<footer class="sticky-footer p-3" id="footer" style="margin-top: 80px;">
+    <div class="container">
+        <div class="text-center text-white">
+            <p>Copyright © 
+            </p>
         </div>
-    </footer>
-    {{-- Akhir Footer --}}
+    </div>
+</footer>
 @endsection

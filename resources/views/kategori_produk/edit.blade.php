@@ -41,7 +41,7 @@
                     onclick="window.history.back()">KEMBALI</button>
                 </div>
                 <div class="col-sm-1 text-end">
-                    <button type="submit" class="btn btn-primary" name="submit">SIMPAN</button>
+                    <button type="submit" class="btn btn-light" style="background-color: #804343; color: white;" name="submit">SIMPAN</button>
                 </div>
             </div>
         </form>

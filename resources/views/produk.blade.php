@@ -27,9 +27,6 @@
         </div>
     </div>
     </section>
-    {{--  AKhir  --}}
-
-    {{-- Footer --}}
     <footer class="sticky-footer p-3" id="footer" style="margin-top: 20px;">
         <div class="container">
             <div class="text-center text-white">

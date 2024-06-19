@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\BarangMasuk;
+use App\Models\LaporanBarangMasuk;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -32,34 +33,42 @@ class BarangMasukController extends Controller
             'jumlah_masuk' => 'required|integer',
             'harga_satuan' => 'required',
         ]);
-    
-        $data = [
-            'tanggal_masuk' => $request->tanggal_masuk,
-            'kode_barang' => $request->kode_barang,
-            'nama_barang' => $request->nama_barang,
-            'jumlah_masuk' => $request->jumlah_masuk,
-            'harga_satuan' => $request->harga_satuan,
-        ];
-        // Proses penyimpanan data baru
-        BarangMasuk::create($data);
         
         // Periksa apakah produk sudah ada
         $product = Product::where('product_code', $request->kode_barang)->first();
 
         if ($product) {
             // Jika stok produk 0, update stok dengan jumlah masuk baru
-            if ($product->stok == 0) {
+            if ($product->stock == 0) {
+                $stoksekarang = $request->jumlah_masuk;
                 $product->update([
-                    'stok' => $request->jumlah_masuk,
+                    'stok' => $stoksekarang
                 ]);
             } else {
                 // Jika stok produk tidak 0, tambahkan stok yang sudah ada dengan stok masuk baru
+                $stoksekarang = $product->stock + $request->jumlah_masuk;
                 $product->update([
-                    'stok' => $product->stok + $request->jumlah_masuk,
+                    'stok' => $stoksekarang,
                 ]);
             }
         }
-    
+        $barangMasuk = BarangMasuk::create([
+            'tanggal_masuk' => $request->tanggal_masuk,
+            'kode_barang' => $request->kode_barang,
+            'nama_barang' => $request->nama_barang,
+            'jumlah_masuk' => $request->jumlah_masuk,
+            'jumlah_stock' => $stoksekarang,
+            'harga_satuan' => $request->harga_satuan,
+        ]);
+        LaporanBarangMasuk::create([
+            'tanggal_masuk' => $barangMasuk->tanggal_masuk,
+            'kode_barang' => $barangMasuk->kode_barang,
+            'nama_barang' => $barangMasuk->nama_barang,
+            'jumlah_masuk' => $barangMasuk->jumlah_masuk,
+            'jumlah_stock' => $barangMasuk->jumlah_stock,
+            'harga_satuan' => $barangMasuk->harga_satuan,
+        ]);
+        
         // Redirect ke halaman utama dengan pesan sukses
         return redirect()->route('barang_masuk.index')->with('success', 'Data Barang Masuk berhasil ditambahkan');
     }
