@@ -8,7 +8,7 @@
             <div class="my-3 p-3 bg-body rounded shadow-sm offset-md-2">
                 <!-- PENCARIAN -->
                 <div class="pb-3">
-                    <form class="d-flex" action="{{ url('kategori_produk/create') }}" 
+                    <form class="d-flex" action="{{ url('kategori_produk') }}" 
                     method="get">
                         <input class="form-control me-1" type="search" name="katakunci" 
                         value="{{ Request::get('katakunci') }}" placeholder="Masukkan kata kunci" 

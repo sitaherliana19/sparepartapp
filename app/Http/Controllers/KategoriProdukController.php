@@ -18,7 +18,7 @@ class KategoriProdukController extends Controller
 
         if (strlen($katakunci)) {
             $data = KategoriProduk::where('nama_kategori', 'like', '%'.$katakunci.'%')
-                ->orWhere('kode_tag_kategori', 'like', '%'.$katakunci.'%')
+                ->orWhere('nama_kategori', 'like', '%'.$katakunci.'%')
                 ->paginate($jumlahbaris);        
         } else {
             $data = KategoriProduk::orderBy('id', 'desc')->paginate($jumlahbaris);

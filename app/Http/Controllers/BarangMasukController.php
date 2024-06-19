@@ -48,6 +48,7 @@ class BarangMasukController extends Controller
                 
                 
             } else {
+                $stoksekarang = $product->stock + $request->jumlah_masuk;
                 // Jika stok produk tidak 0, tambahkan stok yang sudah ada dengan stok masuk baru
                 $product->update([
                     'stok' => $product->stok + $request->jumlah_masuk,
