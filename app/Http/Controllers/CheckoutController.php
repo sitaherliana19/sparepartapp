@@ -114,7 +114,7 @@ class CheckoutController extends Controller
                     'stock_keluar' => $item->quantity,
                     'total_belanja' => $grandtotal,
                 ]);
-        
+
                 // Kurangi stok produk
                 $product->stock -= $item->quantity;
                 $product->save();
